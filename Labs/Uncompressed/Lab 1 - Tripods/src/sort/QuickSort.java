@@ -1,6 +1,5 @@
 package sort;
 
-import tripods.Direction;
 import tripods.Tripod;
 
 import java.util.ArrayList;

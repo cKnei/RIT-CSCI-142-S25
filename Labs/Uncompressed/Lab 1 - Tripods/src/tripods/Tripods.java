@@ -47,7 +47,9 @@ public class Tripods {
 
         Scanner dataFile = new Scanner(file);
 
+        int columns = -1;
         int[][] grid = new int[0][0];
+
         int index = -1;
 
         while ( dataFile.hasNextLine() ) {
@@ -55,16 +57,20 @@ public class Tripods {
             String[] tokens = line.split(" ");
 
             if ( index == -1 ) {
-                grid = new int[Integer.parseInt(tokens[0])][Integer.parseInt(tokens[1])];
-                System.out.println("Rows: " + tokens[0] + ", Columns: " + tokens[1]);
+                columns = Integer.parseInt(tokens[1]);
+
+                grid = new int[Integer.parseInt(tokens[0])][columns];
+                System.out.println("Rows: " + tokens[0] + ", Columns: " + columns);
             } else {
-                for ( int i = 0; i < tokens.length; i++ ) {
+                for ( int i = 0; i < columns; i++ ) {
                     grid[index][i] = Integer.parseInt(tokens[i]);
                 }
             }
 
             index++;
         }
+
+        dataFile.close();
 
         return grid;
     }
