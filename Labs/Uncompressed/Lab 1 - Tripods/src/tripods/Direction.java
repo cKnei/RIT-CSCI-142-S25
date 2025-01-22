@@ -52,7 +52,7 @@ public enum Direction {
         }
         /** demonstrates how to loop over all the different values */
         System.out.println("All values:");
-        for (Direction dir : Direction.values()) {
+        for (Direction dir : Direction.values()) { // Direction.values() -> Direction[4]{Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST}
             System.out.println(dir);
         }
     }

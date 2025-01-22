@@ -124,18 +124,15 @@ public class Tripods {
      * @param grid the 2-D grid of numbers
      */
     public static void displayGrid(int[][] grid) {
-        int row = Tripods.getNumRows(grid);
-        int column = Tripods.getNumColumns(grid);
-
-        if ( row * column > Tripods.MAX_CELLS_TO_DISPLAY ) {
+        if ( Tripods.getNumRows(grid) * Tripods.getNumColumns(grid) > Tripods.MAX_CELLS_TO_DISPLAY ) {
             System.out.println("Too many cells to display");
             return;
         }
 
-        for ( int i = 0; i < row; i++ ) {
+        for ( int[] row : grid ) {
             StringBuilder toPrint = new StringBuilder();
-            for ( int j = 0; j < column; j++ ) {
-                toPrint.append(grid[i][j]).append(" ");
+            for ( int columns : row ) {
+                toPrint.append(columns).append(" ");
             }
             System.out.println(toPrint.substring(0, toPrint.length() - 1));
         }
