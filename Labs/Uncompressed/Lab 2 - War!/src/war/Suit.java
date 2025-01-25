@@ -1,37 +1,37 @@
 package war;
 
 /**
- * An enumerated type for the card suits.
+ * An enumerated type representing the <code>Suit</code> of a <code>{@link war.Card Card}</code>.
  *
  * @author RIT CS
  */
 public enum Suit {
-    CLUB("\u2667"),
-    HEART("\u2665"),
-    DIAMOND("\u2662"),
-    SPADE("\u2660");
+    CLUB('\u2667'),
+    HEART('\u2665'),
+    DIAMOND('\u2662'),
+    SPADE('\u2660');
 
     /**
      * How the suit is displayed
      */
-    private final String display;
+    private final char display;
 
     /**
-     * Set the suit for this card.
+     * Constructs a new <code>Suit</code> with the specified display character
      *
-     * @param display the display character
+     * @param display The display character
      */
-    Suit(String display) {
+    Suit(char display) {
         this.display = display;
     }
 
     /**
-     * Returns the display character for the suit.
+     * Returns the display character for this <code>Suit</code>.
      *
-     * @return display character
+     * @return The display character
      */
     @Override
     public String toString() {
-        return this.display;
+        return String.valueOf(this.display);
     }
 }

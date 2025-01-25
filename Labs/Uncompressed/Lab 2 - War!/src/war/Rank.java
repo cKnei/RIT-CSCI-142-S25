@@ -1,7 +1,7 @@
 package war;
 
 /**
- * An enumerated type for the card's rank.
+ * An enumerated type representing the <code>Rank</code> of a <code>{@link war.Card Card}</code>.
  *
  * @author RIT CS
  */
@@ -21,7 +21,7 @@ public enum Rank {
     ACE("A", 14);
 
     /**
-     * The display character for the rank
+     * The display character for the <code>Rank</code>
      */
     private final String display;
     /**
@@ -30,10 +30,10 @@ public enum Rank {
     private final int value;
 
     /**
-     * Create the rank for this card.
+     * Create the <code>Rank</code> for this card.
      *
-     * @param display display character
-     * @param value   numerical value
+     * @param display The display character
+     * @param value   The numerical value
      */
     Rank(String display, int value) {
         this.display = display;
@@ -41,18 +41,18 @@ public enum Rank {
     }
 
     /**
-     * Get the value for this card.
+     * Get the value for this <code>Rank</code>.
      *
-     * @return the card's value
+     * @return This <code>Rank</code>'s value
      */
     public int getValue() {
         return this.value;
     }
 
     /**
-     * Returns the display character for the rank.
+     * Returns the display character for the <code>Rank</code>.
      *
-     * @return the display character
+     * @return The display character
      */
     @Override
     public String toString() {

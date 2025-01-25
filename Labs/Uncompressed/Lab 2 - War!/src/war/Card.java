@@ -8,11 +8,11 @@ package war;
  */
 public class Card {
     /**
-     * The rank of the card
+     * The <code>{@link war.Rank}</code> of the card
      */
     private final Rank rank;
     /**
-     * The suit of the card
+     * The <code>{@link war.Suit}</code> of the card
      */
     private final Suit suit;
     /**
@@ -25,8 +25,8 @@ public class Card {
      * Create the card with the rank and suit.
      * The card is not face up to begin with.
      *
-     * @param rank the card's rank
-     * @param suit the card's suit
+     * @param rank The card's rank
+     * @param suit The card's suit
      */
     public Card(Rank rank, Suit suit) {
         this.rank = rank;
@@ -50,7 +50,7 @@ public class Card {
     /**
      * Is the card face up or not?
      *
-     * @return whether the card is faceUp or not.
+     * @return <code>true</code> if this card is face up, otherwise <code>false</code>
      */
     public boolean isFaceUp() {
         return this.faceUp;
@@ -59,31 +59,34 @@ public class Card {
     /**
      * Does this card beat (have a higher rank value) than the other card?
      *
-     * @param other the card to compare to
-     * @return true if this card beats the other card, false otherwise
+     * @param other The card to compare to
+     * @return <code>true</code> if this card's value is greater than the other card, <code>false</code> otherwise
      */
     public boolean beats(Card other) {
         return this.rank.getValue() > other.rank.getValue();
     }
 
     /**
-     * Returns the string representation for a Card which contains the rank, suit and whether the
-     * card is face up or not.  For example, if the card is the Ace of Clubs and is face up it
-     * would return "A♧(U)".  If the card was the Seven of Spades and is face down it would
-     * return "7♠(D)".
+     * Returns the string representation for a Card which contains the rank, suit and whether the card is face up or not.
+     * <p> For example:
+     * <ul>
+     *     <li>If the card is an Ace of Clubs and is face up it would return <code>"A♧(U)"</code>.</li>
+     *     <li>If the card is a Seven of Spades and is face down it would return <code>"7♠(D)"</code>.</li>
+     * </ul>
      *
      * @return the string described above
      */
     @Override
     public String toString() {
-        return this.rank.getValue() + this.suit.toString() + "(" + (this.faceUp ? "U" : "D") + ")";
+        return this.rank.toString() + this.suit.toString() + "(" + (this.faceUp ? "U" : "D") + ")";
     }
 
     /**
      * Two cards are equal if they have the same rank (regardless of the suit).
      *
-     * @param other the card to compare to for equality
-     * @return whether the two cards are equal or not
+     * @param other The card to compare to for equality
+     * @return <code>false</code> if the provided {@link java.lang.Object} is not an instance of {@link war.Card} or if
+     *         the ranks are not the same. Otherwise, <code>true</code> if the ranks are the same.
      */
     @Override
     public boolean equals(Object other) {
