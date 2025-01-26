@@ -1,7 +1,7 @@
 package war;
 
 /**
- * An enumerated type representing the <code>Rank</code> of a <code>{@link war.Card Card}</code>.
+ * An enumerated type representing the <code>Rank</code> of a <code>{@link Card Card}</code>.
  *
  * @author RIT CS
  */

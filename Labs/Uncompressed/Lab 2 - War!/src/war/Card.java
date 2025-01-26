@@ -18,7 +18,7 @@ public class Card {
     /**
      * Is the card face up?
      */
-    private boolean faceUp = false;
+    private boolean faceUp;
 
 
     /**
@@ -29,6 +29,8 @@ public class Card {
      * @param suit The card's suit
      */
     public Card(Rank rank, Suit suit) {
+        this.faceUp = false;
+
         this.rank = rank;
         this.suit = suit;
     }
@@ -78,14 +80,22 @@ public class Card {
      */
     @Override
     public String toString() {
-        return this.rank.toString() + this.suit.toString() + "(" + (this.faceUp ? "U" : "D") + ")";
+        String shown;
+
+        if (this.faceUp) {
+            shown = "U";
+        } else {
+            shown = "D";
+        }
+
+        return "" + this.rank + this.suit + "(" + shown + ")";
     }
 
     /**
      * Two cards are equal if they have the same rank (regardless of the suit).
      *
      * @param other The card to compare to for equality
-     * @return <code>false</code> if the provided {@link java.lang.Object} is not an instance of {@link war.Card} or if
+     * @return <code>false</code> if the provided {@link java.lang.Object} is not an instance of {@link Card} or if
      *         the ranks are not the same. Otherwise, <code>true</code> if the ranks are the same.
      */
     @Override

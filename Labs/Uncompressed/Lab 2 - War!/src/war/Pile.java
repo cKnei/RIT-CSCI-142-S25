@@ -8,7 +8,7 @@ import java.util.Random;
  * Represents a <code>Pile</code> of cards.
  *
  * <p> The behavior of a <code>Pile</code> is that it holds a {@link java.util.ArrayList collection} of
- * {@link war.Card cards} that can be {@link #addCard(Card) added} to the bottom that are either face up or face down.
+ * {@link Card cards} that can be {@link #addCard(Card) added} to the bottom that are either face up or face down.
  * The cards can be {@link #shuffle() shuffled} randomly into a face down position.
  *
  * <p> When a card is {@link #drawCard(boolean) drawn}, if the top card is face up, it means the <code>Pile</code> needs
@@ -79,17 +79,15 @@ public class Pile {
 
         Collections.shuffle(pile, Pile.rng);
 
-        for (Card card : pile) {
+        for ( Card card : pile) {
             card.setFaceDown();
         }
-
-        System.out.println(this);
     }
 
     /**
      * Add a card to the bottom of the <code>Pile</code> (leave the face setting as is).
      *
-     * @param card The {@link war.Card} to add
+     * @param card The {@link Card} to add
      */
     public void addCard(Card card) {
         this.getCards().add(card);
@@ -98,7 +96,7 @@ public class Pile {
     /**
      * Returns the collection of cards in the <code>Pile</code>'s current state.
      *
-     * @return A list of {@link war.Card} objects representing all the cards in the <code>Pile</code>.
+     * @return A list of {@link Card} objects representing all the cards in the <code>Pile</code>.
      */
     public ArrayList<Card> getCards() {
         return this.cards;
@@ -113,7 +111,7 @@ public class Pile {
      * <p> Second, remove the card that is now at the top. If faceUp is true, the card should be set to be face up,
      * otherwise that state is not changed.
      *
-     * <p> Finally, return the top {@link war.Card card}.
+     * <p> Finally, return the top {@link Card card}.
      *
      * @param faceUp Should the card be set to face up when drawn.
      * @return The card that was at the top of the <code>Pile</code>
@@ -121,11 +119,15 @@ public class Pile {
     public Card drawCard(boolean faceUp) {
         ArrayList<Card> pile = this.getCards();
 
-        if ( pile.getFirst().isFaceUp() ) this.shuffle();
+        if ( pile.getFirst().isFaceUp() ) {
+            this.shuffle();
+            System.out.println(this);
+        }
 
         Card drawnCard = pile.removeFirst();
 
         if ( faceUp ) drawnCard.setFaceUp();
+        else drawnCard.setFaceDown();
 
         return drawnCard;
     }
@@ -133,7 +135,7 @@ public class Pile {
     /**
      * Is there at least one card in the <code>Pile</code>?
      *
-     * @return <code>true</code> if the <code>Pile</code> has at least one {@link war.Card},
+     * @return <code>true</code> if the <code>Pile</code> has at least one {@link Card},
      *         otherwise <code>false</code>.
      */
     public boolean hasCard() {
@@ -151,7 +153,7 @@ public class Pile {
      * Returns a string representation of the <code>Pile</code> in the format:<br>
      * <code>"{name} pile: first-card second-card ..."</code>
      *
-     * <p> Note that this uses the {@link war.Card#toString()} method to get the card's string.
+     * <p> Note that this uses the {@link Card#toString()} method to get the card's string.
      *
      * @return the string described above
      */

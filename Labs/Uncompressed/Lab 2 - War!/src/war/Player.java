@@ -14,7 +14,7 @@ public class Player {
     /**
      * Is this <code>Player</code> the winner of the game?
      */
-    private boolean winner = false;
+    private boolean winner;
 
     /**
      * Create the <code>Player</code> with their id.
@@ -27,6 +27,7 @@ public class Player {
      */
     public Player(int id) {
         this.pile = new Pile("P" + id);
+        this.winner = false;
     }
 
     /**
@@ -44,7 +45,7 @@ public class Player {
      * @param cards the incoming pile of cards to add to this player's pile
      */
     public void addCards(Pile cards) {
-        for (Card card : cards.getCards()) {
+        for ( Card card : cards.getCards()) {
             this.pile.addCard(card);
         }
     }
