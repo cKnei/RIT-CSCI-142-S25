@@ -1,7 +1,7 @@
 package war;
 
 /**
- * The main program for the card game, War. It is run on the command line as:<br/>
+ * The main program for the card game, War. It is run on the command line as:<br />
  * <code>java War cards-per-player seed</code>
  *
  * @author RIT CS

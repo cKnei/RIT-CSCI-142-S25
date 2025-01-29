@@ -150,7 +150,7 @@ public class Pile {
     }
 
     /**
-     * Returns a string representation of the <code>Pile</code> in the format:<br>
+     * Returns a string representation of the <code>Pile</code> in the format:<br />
      * <code>"{name} pile: first-card second-card ..."</code>
      *
      * <p> Note that this uses the {@link Card#toString()} method to get the card's string.

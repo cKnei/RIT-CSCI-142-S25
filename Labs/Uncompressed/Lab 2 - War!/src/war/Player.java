@@ -85,7 +85,8 @@ public class Player {
     }
 
     /**
-     * Returns a string representation of this player's pile, e.g.: "P1 pile: 10♢(D) 4♧(D)".
+     * Returns a string representation of this player's pile, e.g.: <br />
+     * <code>"P1 pile: 10♢(D) 4♧(D)".</code>
      *
      * @return the string mentioned above
      */
