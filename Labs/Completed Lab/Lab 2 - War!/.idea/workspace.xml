@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c7a9f225-6461-491f-8a30-7ef1f70a4667" name="Changes" comment="Formatting" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;cKnei&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/cKnei/RIT-CSCI-142-S25.git&quot;,
+    &quot;accountId&quot;: &quot;e9465318-8947-4df1-908f-1dc53a1cde8f&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2s5vDMzxS8EpzqziDKSX6stCyVB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Cards:   1 | Seed: 0.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Cards:   1 | Seed: 3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Cards:   1 | Seed: 7.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Cards:   2 | Seed: 0.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Cards:   2 | Seed: 3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Cards:   4 | Seed: 0.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Cards:   4 | Seed: 3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Cards: 26 | Seed: 0.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Cards: 26 | Seed: 1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.TestCard.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestPile.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestPlayer.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/knei/Documents/RIT CSCI - 142/Labs/Uncompressed/Lab 2 - War!&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.gutterIcons&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Application.Cards:   1 | Seed: 0">
+    <list>
+      <item itemvalue="Application.Cards:   1 | Seed: 0" />
+      <item itemvalue="Application.Cards:   1 | Seed: 3" />
+      <item itemvalue="Application.Cards:   1 | Seed: 7" />
+      <item itemvalue="Application.Cards:   2 | Seed: 0" />
+      <item itemvalue="Application.Cards:   2 | Seed: 3" />
+      <item itemvalue="Application.Cards:   4 | Seed: 0" />
+      <item itemvalue="Application.Cards:   4 | Seed: 3" />
+      <item itemvalue="Application.Cards: 26 | Seed: 0" />
+      <item itemvalue="Application.Cards: 26 | Seed: 1" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c7a9f225-6461-491f-8a30-7ef1f70a4667" name="Changes" comment="" />
+      <created>1737758129497</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1737758129497</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial Import with some work done of Lab 2 - War!">
+      <option name="closed" value="true" />
+      <created>1737765003125</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1737765003125</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Finished Card.java, Pile.java, Player.java">
+      <option name="closed" value="true" />
+      <created>1737783034019</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1737783034019</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Finished Assignment, all works from what I can tell">
+      <option name="closed" value="true" />
+      <created>1737850314680</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1737850314680</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Run Configurations">
+      <option name="closed" value="true" />
+      <created>1737851227826</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1737851227826</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Formatting">
+      <option name="closed" value="true" />
+      <created>1738126360396</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1738126360396</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Import with some work done of Lab 2 - War!" />
+    <MESSAGE value="Finished Card.java, Pile.java, Player.java" />
+    <MESSAGE value="Finished Assignment, all works from what I can tell" />
+    <MESSAGE value="Run Configurations" />
+    <MESSAGE value="Formatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Formatting" />
+  </component>
+</project>
