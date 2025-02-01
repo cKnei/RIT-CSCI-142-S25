@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="HotPotato 3 2 (Alakazam)" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="hotpotato.HotPotato" />
-    <module name="HotPotato" />
+    <module name="Lab 3 - Hot Potato" />
     <option name="PROGRAM_PARAMETERS" value="3 2" />
     <extension name="coverage">
       <pattern>
