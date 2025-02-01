@@ -3,6 +3,8 @@ package rit.stu;
 /**
  * A generic doubly linked node that holds a type {@code T} as its data.
  *
+ * @param <T> type of data being stored
+ *
  * @author RIT CS
  * @author Knei
  */

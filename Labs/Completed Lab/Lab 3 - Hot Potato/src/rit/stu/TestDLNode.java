@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
  *
  * @author RIT CS
  */
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestMethodOrder( MethodOrderer.OrderAnnotation.class )
 public class TestDLNode {
     /**
      * standard oautput capturer
@@ -26,21 +26,21 @@ public class TestDLNode {
     }
 
     @Test
-    @Order(1)
+    @Order( 1 )
     public void testDLNodeString() {
         // null <-> A <-> B <-> C <-> D <-> null
-        DLNode sNodeA = new DLNode("A");
-        DLNode sNodeB = new DLNode("B", sNodeA, null);
-        DLNode sNodeC = new DLNode("C", sNodeB, null);
-        DLNode sNodeD = new DLNode("D", sNodeC, null);
+        DLNode<String> sNodeA = new DLNode<>("A");
+        DLNode<String> sNodeB = new DLNode<>("B", sNodeA, null);
+        DLNode<String> sNodeC = new DLNode<>("C", sNodeB, null);
+        DLNode<String> sNodeD = new DLNode<>("D", sNodeC, null);
 
         sNodeA.setNext(sNodeB);
         sNodeB.setNext(sNodeC);
         sNodeC.setNext(sNodeD);
 
         // traverse from A -> D
-        DLNode curr = sNodeA;
-        while (curr != null) {
+        DLNode<String> curr = sNodeA;
+        while ( curr != null ) {
             assertInstanceOf(String.class, curr.getData());   // make sure node data is of type String
             System.out.println(curr);
             curr = curr.getNext();
@@ -53,10 +53,10 @@ public class TestDLNode {
     }
 
     @Test
-    @Order(2)
+    @Order( 2 )
     public void testDLNodeInteger() {
         // 10
-        DLNode iNode10 = new DLNode(10);
+        DLNode<Integer> iNode10 = new DLNode<>(10);
         assertEquals(10, iNode10.getData());
         assertInstanceOf(Integer.class, iNode10.getData());   // make sure generic node is of type Integer
         assertNull(iNode10.getPrev());
@@ -69,7 +69,7 @@ public class TestDLNode {
         iNode10.setData(10);
 
         // 10 <- 20
-        DLNode iNode20 = new DLNode(20, iNode10, null);
+        DLNode<Integer> iNode20 = new DLNode<>(20, iNode10, null);
         assertEquals(iNode10, iNode20.getPrev());
         assertInstanceOf(Integer.class, iNode20.getData());
         assertNull(iNode20.getNext());
@@ -78,7 +78,7 @@ public class TestDLNode {
         outputStreamCaptor.reset();
 
         //  10 <- 20 <- 30 ->...
-        DLNode iNode30 = new DLNode(30, iNode20, iNode10);
+        DLNode<Integer> iNode30 = new DLNode<>(30, iNode20, iNode10);
         assertEquals(30, iNode30.getData());
         assertInstanceOf(Integer.class, iNode30.getData());
         assertEquals(iNode20, iNode30.getPrev());
