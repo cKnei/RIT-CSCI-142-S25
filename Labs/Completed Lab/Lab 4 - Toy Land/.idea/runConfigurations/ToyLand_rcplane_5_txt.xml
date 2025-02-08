@@ -2,7 +2,7 @@
   <configuration default="false" name="ToyLand rcplane-5.txt" type="Application" factoryName="Application">
     <option name="ALTERNATIVE_JRE_PATH" value="liberica-17" />
     <option name="MAIN_CLASS_NAME" value="toyland.ToyLand" />
-    <module name="Toyland" />
+    <module name="Lab 4 - Toy Land" />
     <option name="PROGRAM_PARAMETERS" value="rcplane-5.txt" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data" />
     <extension name="coverage">

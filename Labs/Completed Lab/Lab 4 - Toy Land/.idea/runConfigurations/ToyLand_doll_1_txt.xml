@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="ToyLand doll-1.txt" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="toyland.ToyLand" />
-    <module name="Toyland" />
+    <module name="Lab 4 - Toy Land" />
     <option name="PROGRAM_PARAMETERS" value="doll-1.txt" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data" />
     <extension name="coverage">

@@ -81,7 +81,16 @@ public class ToyLand {
      * </ol>
      */
     public void playTime() {
-        // TODO
+        while ( !this.activeToys.isEmpty() ) {
+            IToy toy = this.activeToys.removeFirst();
+            toy.play(ToyLand.getRandomTime());
+
+            if ( toy.isRetired() ) {
+                this.retiredToys.add(toy);
+            } else {
+                this.activeToys.add(toy);
+            }
+        }
     }
 
     /**
@@ -93,7 +102,19 @@ public class ToyLand {
      * Print the average wear of all toys <br />
      */
     public void displayStatistics() {
-        // TODO
+        int totalHappiness = 0;
+        double totalWear = 0.0;
+
+        System.out.println("Retired toys:");
+        for ( IToy toy : this.retiredToys ) {
+            System.out.println("\t" + toy);
+            totalHappiness += toy.getHappiness();
+            totalWear += toy.getWear();
+        }
+
+        System.out.println("Total toys: " + this.retiredToys.size());
+        System.out.println("Total happiness: " + totalHappiness);
+        System.out.println("Average wear: " + totalWear / this.retiredToys.size());
     }
 
     /**
@@ -104,8 +125,8 @@ public class ToyLand {
     }
 
     /**
-     * The main program requires the toy data file be provided.  It then
-     * load the toys, plays with them, and displays some final statistics.
+     * The main program requires the toy data file be provided. It then
+     * loads the toys, plays with them, and displays some final statistics.
      *
      * @param args command line arguments (the filename)
      */
