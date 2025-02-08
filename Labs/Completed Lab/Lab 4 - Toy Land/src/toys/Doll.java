@@ -45,12 +45,12 @@ public class Doll extends Toy {
      * The following things happen in order: <br />
      *
      * <ol>
-     *     <li>A tab indented, "\t", message is displayed to standard output in the format: <br />
-     *         {@code {name} brushes their {hair color} hair and says, "{speak}"} <br />
-     *         For example: <br />
-     *         {@code GabbyGabby brushes their RED hair and says, "Will_you_be_my_friend?"}
-     *     </li>
-     *     <li>The wear increases by the age.</li>
+     *      <li>A tab indented, "\t", message is displayed to standard output in the format: <br />
+     *              {@code {name} brushes their {hair color} hair and says, "{speak}"} <br />
+     *          For example: <br />
+     *              {@code GabbyGabby brushes their RED hair and says, "Will_you_be_my_friend?"}
+     *      </li>
+     *      <li>The wear increases by the age.</li>
      * </ol>
      *
      * @param time the amount of time the toy was played with
@@ -61,7 +61,7 @@ public class Doll extends Toy {
         this.increaseWear(this.age);
     }
 
-    /**
+     /**
      * Returns a string representation in the format: <br />
      * {@code Toy{PC:?, N:?, H:?, R:?, W:?}, Doll{HC:?, A:?, S:?}}
      * <ul>

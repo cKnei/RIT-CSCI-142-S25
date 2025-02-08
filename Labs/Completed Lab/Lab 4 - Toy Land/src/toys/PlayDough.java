@@ -18,7 +18,15 @@ public class PlayDough extends Toy {
     }
 
     /**
-     * {@inheritDoc}
+     * The following things happen in order:
+     * <ol>
+     *     <li>A tab indented, "\t", message is displayed to standard output in the format: <br />
+     *             {@code Arts and crafting with {color} {name}} <br />
+     *         For example: <br />
+     *             {@code Arts and crafting with GREEN Play-Doh}
+     *     </li>
+     *    <li>The wear increases by a multiple of WEAR_MULTIPLIER * time.</li>
+     * </ol>
      *
      * @param time the amount of time the toy was played with
      */

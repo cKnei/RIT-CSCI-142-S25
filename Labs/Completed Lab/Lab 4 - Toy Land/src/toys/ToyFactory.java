@@ -36,10 +36,10 @@ public class ToyFactory {
             case ACTION_FIGURE -> {
                 return new ActionFigure(fields[1], Integer.parseInt(fields[2]), fields[3]);
             }
-            /* UNCOMMENT EACH CASE AS YOU COMPLETE EACH NEW TOY
             case RC_PLANE -> {
                 return new RCPlane(fields[1], Integer.parseInt(fields[2]), Integer.parseInt(fields[3]));
             }
+            /* UNCOMMENT EACH CASE AS YOU COMPLETE EACH NEW TOY
             case KITE -> {
                 return new Kite(fields[1], Color.valueOf(fields[2]), Kite.Type.valueOf(fields[3]), Integer.parseInt(fields[4]));
             }

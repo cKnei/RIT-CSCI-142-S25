@@ -26,9 +26,9 @@ public class ActionFigure extends Doll {
      * The following things happen in order: <br />
      * <ol>
      *      <li>A tab indented, "\t", message is displayed to standard output in the format: <br />
-     *          {@code {name} kung foo chops with {energy * time} energy!} <br />
+     *              {@code {name} kung foo chops with {energy * time} energy!} <br />
      *          For example: <br />
-     *          {@code He-man kung foo chops with 46 energy!}
+     *              {@code He-man kung foo chops with 46 energy!}
      *      </li>
      *      <li>The energy is increased by 1.</li>
      *      <li>The special play of Doll is called.</li>
