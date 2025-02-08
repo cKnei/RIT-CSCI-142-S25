@@ -1,6 +1,6 @@
 package toys;
 
-public class Kite extends Toy {
+public class Kite extends Flying {
     private static final double ALTITUDE_CHANGE_RATE = 0.5;
     private static final double WEAR_MULTIPLIER = 0.05;
 
@@ -10,28 +10,14 @@ public class Kite extends Toy {
     private final Type type;
     private final int lineLength;
 
-    private final double maxAltitude;
-    private double currentAltitude;
-
     public Kite(String name, Color color, Type type, int lineLength) {
-        super(Kite.CurrentProductCode, name);
+        super(Kite.CurrentProductCode, name, lineLength);
         Kite.CurrentProductCode++;
 
         this.color = color;
         this.type = type;
         this.lineLength = lineLength;
-        this.maxAltitude = lineLength;
-        this.currentAltitude = 0;
     }
-
-    public double getCurrentAltitude() {
-        return this.currentAltitude;
-    }
-
-    public double getMaxAltitude() {
-        return this.maxAltitude;
-    }
-
     public Color getColor() {
         return this.color;
     }
@@ -97,7 +83,7 @@ public class Kite extends Toy {
      */
     @Override
     public String toString() {
-        return super.toString() + ", Flying{MA:" + this.maxAltitude + ", CA:" + this.currentAltitude + "}, Kite{C:" + this.color + ", T:" + this.type + ", LL:" + this.lineLength + "}";
+        return super.toString() + ", Kite{C:" + this.color + ", T:" + this.type + ", LL:" + this.lineLength + "}";
     }
 
     public enum Type {

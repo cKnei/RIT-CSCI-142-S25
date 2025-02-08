@@ -1,8 +1,8 @@
 package toys;
 
 public abstract class Flying extends Toy {
-    private double maxAltitude;
-    private double currentAltitude;
+    protected double maxAltitude;
+    protected double currentAltitude;
 
     protected Flying(int productCode, String name, double maxAltitude) {
         super(productCode, name);
@@ -20,12 +20,7 @@ public abstract class Flying extends Toy {
     }
 
     @Override
-    protected void specialPlay(int time) {
-        System.out.println();
-    }
-
-    @Override
     public String toString() {
-        return super.toString() + ", Flying{MA:" + this.maxAltitude + "CA:" + this.currentAltitude + "}";
+        return super.toString() + ", Flying{MA:" + this.maxAltitude + ", CA:" + this.currentAltitude + "}";
     }
 }

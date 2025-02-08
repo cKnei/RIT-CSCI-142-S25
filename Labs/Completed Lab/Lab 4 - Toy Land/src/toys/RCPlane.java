@@ -1,35 +1,21 @@
 package toys;
 
-public class RCPlane extends Toy {
+public class RCPlane extends Flying {
     private static final double STARTING_SPEED = 15;
     private static final double ALTITUDE_CHANGE_RATE = 5;
     private static final double SPEED_CHANGE_RATE = 2;
 
     private static int CurrentProductCode = 300;
+    private final double maxSpeed;
 
     private double currentSpeed;
-    private double maxSpeed;
-    private double currentAltitude;
-    private double maxAltitude;
 
     protected RCPlane(String name, double maxSpeed, double maxAltitude) {
-        super(RCPlane.CurrentProductCode, name);
+        super(RCPlane.CurrentProductCode, name, maxAltitude);
         RCPlane.CurrentProductCode++;
 
         this.maxSpeed = maxSpeed;
-        this.maxAltitude = maxAltitude;
-
         this.currentSpeed = RCPlane.STARTING_SPEED;
-        this.currentAltitude = 0;
-    }
-
-    public double getCurrentAltitude() {
-        return this.currentAltitude;
-    }
-
-
-    public double getMaxAltitude() {
-        return this.maxAltitude;
     }
 
     public double getSpeed() {
@@ -101,6 +87,6 @@ public class RCPlane extends Toy {
      */
     @Override
     public String toString() {
-        return super.toString() + ", Flying{MA:" + this.maxAltitude + ", CA:" + this.currentAltitude + "}, RCPlane{S:" + this.currentSpeed + "}";
+        return super.toString() + ", RCPlane{S:" + this.currentSpeed + "}";
     }
 }

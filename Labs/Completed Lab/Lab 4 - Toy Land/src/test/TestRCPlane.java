@@ -133,7 +133,7 @@ public class TestRCPlane {
         assertEquals(100, plane2.getSpeed());
 
         // make sure RCPlane extends Flying
-//        Flying ft = plane2;
-//        assertEquals(99, ft.getHappiness());
+        Flying ft = plane2;
+        assertEquals(99, ft.getHappiness());
     }
 }
