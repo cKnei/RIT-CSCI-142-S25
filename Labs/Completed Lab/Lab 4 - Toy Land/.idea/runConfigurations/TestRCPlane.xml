@@ -3,7 +3,7 @@
     <module name="Toyland" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="test.*" />
+        <option name="PATTERN" value="toys.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

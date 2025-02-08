@@ -43,12 +43,11 @@ public class ToyFactory {
             case KITE -> {
                 return new Kite(fields[1], Color.valueOf(fields[2]), Kite.Type.valueOf(fields[3]), Integer.parseInt(fields[4]));
             }
+            */
             default -> {
                 System.out.println("Unrecognized toy: " + toyLine);
                 return null;
             }
-            */
         }
-        return null;
     }
 }
