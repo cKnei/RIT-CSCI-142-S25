@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="TestPlayDough" type="JUnit" factoryName="JUnit">
-    <module name="Toyland" />
+    <module name="Lab 4 - Toy Land" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="test.*" />

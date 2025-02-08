@@ -27,7 +27,6 @@ public class ToyFactory {
     public static IToy makeToy(String toyLine) {
         String[] fields = toyLine.split("\\s++");
         switch (ToyType.valueOf(fields[0])) {
-            /* UNCOMMENT EACH CASE AS YOU COMPLETE EACH NEW TOY
             case PLAY_DOUGH -> {
                 return new PlayDough(fields[1], Color.valueOf(fields[2]));
             }
@@ -37,6 +36,7 @@ public class ToyFactory {
             case ACTION_FIGURE -> {
                 return new ActionFigure(fields[1], Integer.parseInt(fields[2]), fields[3]);
             }
+            /* UNCOMMENT EACH CASE AS YOU COMPLETE EACH NEW TOY
             case RC_PLANE -> {
                 return new RCPlane(fields[1], Integer.parseInt(fields[2]), Integer.parseInt(fields[3]));
             }

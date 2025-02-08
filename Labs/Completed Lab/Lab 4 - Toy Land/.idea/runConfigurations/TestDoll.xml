@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="TestDoll" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
-    <module name="Toyland" />
+    <module name="Lab 4 - Toy Land" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="test.*" />

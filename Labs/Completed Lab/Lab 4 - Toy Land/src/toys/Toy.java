@@ -37,7 +37,7 @@ public abstract class Toy implements IToy {
     private double wear;
 
 
-    public Toy(int productCode, String name) {
+    protected Toy(int productCode, String name) {
         this.productCode = productCode;
         this.name = name;
 
@@ -70,20 +70,20 @@ public abstract class Toy implements IToy {
     }
 
     public void play(int time) {
-        System.out.println("Playing(" + time + "): " + this);
+        System.out.println("PLAYING(" + time + "): " + this);
         this.specialPlay(time);
         this.happiness += time;
 
-        if ( this.isRetired() ) {
+        if ( this.isRetired() )
             System.out.println("RETIRED: " + this);
-        }
     }
 
     /**
+     * Each toy has a special play message, implemented through this method.
+     *
      * @param time the amount of time the toy was played with
-     * @implSpec Must be private
      */
-    abstract void specialPlay(int time);
+    protected abstract void specialPlay(int time);
 
     /**
      * Returns a string representation of the toy in the format: <br />
@@ -106,7 +106,7 @@ public abstract class Toy implements IToy {
         return "Toy{PC:" + this.productCode +
                 ", N:" + this.name +
                 ", H:" + this.happiness +
-                ", R: " + this.isRetired() +
+                ", R:" + this.isRetired() +
                 ", W:" + this.wear + "}";
     }
 }
