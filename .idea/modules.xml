@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Labs/Completed Lab/Lab 3 - Hot Potato/Lab 3 - Hot Potato.iml" filepath="$PROJECT_DIR$/Labs/Completed Lab/Lab 3 - Hot Potato/Lab 3 - Hot Potato.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Labs/Completed Lab/Lab 4 - Toy Land/Lab 4 - Toy Land.iml" filepath="$PROJECT_DIR$/Labs/Completed Lab/Lab 4 - Toy Land/Lab 4 - Toy Land.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Labs/Completed Lab/Lab 4 - Toy Land/src/Lab 4 - Toy Land2.iml" filepath="$PROJECT_DIR$/Labs/Completed Lab/Lab 4 - Toy Land/src/Lab 4 - Toy Land2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/RIT CSCI - 142.iml" filepath="$PROJECT_DIR$/.idea/RIT CSCI - 142.iml" />
+    </modules>
+  </component>
+</project>

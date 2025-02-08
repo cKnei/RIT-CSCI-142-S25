@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Cards:   4 | Seed: 0" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="war.War" />
+    <module name="Lab 2 - War!" />
+    <option name="PROGRAM_PARAMETERS" value="4 0" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
