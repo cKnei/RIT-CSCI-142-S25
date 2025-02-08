@@ -39,10 +39,10 @@ public class ToyFactory {
             case RC_PLANE -> {
                 return new RCPlane(fields[1], Integer.parseInt(fields[2]), Integer.parseInt(fields[3]));
             }
-            /* UNCOMMENT EACH CASE AS YOU COMPLETE EACH NEW TOY
             case KITE -> {
                 return new Kite(fields[1], Color.valueOf(fields[2]), Kite.Type.valueOf(fields[3]), Integer.parseInt(fields[4]));
             }
+            /* UNCOMMENT EACH CASE AS YOU COMPLETE EACH NEW TOY
             */
             default -> {
                 System.out.println("Unrecognized toy: " + toyLine);
