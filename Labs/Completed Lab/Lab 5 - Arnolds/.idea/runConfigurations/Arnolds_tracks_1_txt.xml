@@ -2,7 +2,7 @@
   <configuration default="false" name="Arnolds tracks-1.txt" type="Application" factoryName="Application">
     <option name="ALTERNATIVE_JRE_PATH" value="17" />
     <option name="MAIN_CLASS_NAME" value="simulation.Arnolds" />
-    <module name="Arnolds" />
+    <module name="Lab 5 - Arnolds" />
     <option name="PROGRAM_PARAMETERS" value="tracks-1.txt" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data" />
     <extension name="coverage">
