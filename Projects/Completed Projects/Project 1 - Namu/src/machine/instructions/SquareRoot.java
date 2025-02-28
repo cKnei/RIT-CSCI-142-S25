@@ -1,13 +1,22 @@
 package machine.instructions;
 
+import machine.Alaton;
+import machine.InstructionStack;
+
 public class SquareRoot implements Instruction {
+    private final InstructionStack stack;
+
+    public SquareRoot(Alaton machine) {
+        this.stack = machine.getInstructionStack();
+    }
+
     /**
      * Run this instruction on the machine, using the machine's
      * value stack and symbol table.
      */
     @Override
     public void execute() {
-
+        this.stack.push((int) Math.pow(this.stack.pop(), 0.5d));
     }
 
     /**
@@ -18,6 +27,6 @@ public class SquareRoot implements Instruction {
      */
     @Override
     public String toString() {
-        return "SQUARE_ROOT";
+        return "SQRT";
     }
 }

@@ -1,13 +1,22 @@
 package machine.instructions;
 
+import machine.Alaton;
+import machine.InstructionStack;
+
 public class Negate implements Instruction {
+    private final InstructionStack stack;
+
+    public Negate(Alaton machine) {
+        this.stack = machine.getInstructionStack();
+    }
+
     /**
      * Run this instruction on the machine, using the machine's
      * value stack and symbol table.
      */
     @Override
     public void execute() {
-
+        this.stack.push(-this.stack.pop());
     }
 
     /**
@@ -18,6 +27,6 @@ public class Negate implements Instruction {
      */
     @Override
     public String toString() {
-        return "NEGATE";
+        return "NEG";
     }
 }

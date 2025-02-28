@@ -1,13 +1,23 @@
 package machine.instructions;
 
+import machine.Alaton;
+import machine.InstructionStack;
+
 public class Subtract implements Instruction {
+    private final InstructionStack stack;
+
+    public Subtract(Alaton machine) {
+        this.stack = machine.getInstructionStack();
+    }
+
     /**
      * Run this instruction on the machine, using the machine's
      * value stack and symbol table.
      */
     @Override
     public void execute() {
-
+        int i2 = this.stack.pop();
+        this.stack.push(this.stack.pop() - i2);
     }
 
     /**
@@ -18,7 +28,7 @@ public class Subtract implements Instruction {
      */
     @Override
     public String toString() {
-        return "SUBTRACT";
+        return "SUB";
     }
 }
 

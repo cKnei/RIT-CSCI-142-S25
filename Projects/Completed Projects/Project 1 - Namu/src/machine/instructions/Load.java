@@ -1,13 +1,35 @@
 package machine.instructions;
 
+import common.Errors;
+import common.SymbolTable;
+import machine.Alaton;
+import machine.InstructionStack;
+
+/**
+ * The LOAD instruction.
+ *
+ * @author knei
+ */
 public class Load implements Instruction {
+    private final String name;
+    private final SymbolTable table;
+    private final InstructionStack stack;
+
+    public Load(String name, Alaton machine) {
+        this.name = name;
+        this.table = machine.getSymbolTable();
+        this.stack = machine.getInstructionStack();
+    }
+
     /**
      * Run this instruction on the machine, using the machine's
      * value stack and symbol table.
      */
     @Override
     public void execute() {
-
+        if ( this.table.has(this.name) )
+            this.stack.push(this.table.get(this.name));
+        else Errors.report(Errors.Type.UNINITIALIZED);
     }
 
     /**
@@ -18,6 +40,6 @@ public class Load implements Instruction {
      */
     @Override
     public String toString() {
-        return "LOAD";
+        return "LOAD " + this.name;
     }
 }

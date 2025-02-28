@@ -1,13 +1,32 @@
 package machine.instructions;
 
+import common.Errors;
+import machine.Alaton;
+import machine.InstructionStack;
+
+/**
+ * The DIVIDE instruction.
+ *
+ * @author knei
+ */
 public class Divide implements Instruction {
+    private final InstructionStack stack;
+
+    public Divide(Alaton machine) {
+        this.stack = machine.getInstructionStack();
+    }
+
     /**
      * Run this instruction on the machine, using the machine's
      * value stack and symbol table.
      */
     @Override
     public void execute() {
-
+        int divisor = this.stack.pop();
+        if (divisor == 0)
+            Errors.report(Errors.Type.DIVIDE_BY_ZERO);
+        else
+            this.stack.push(this.stack.pop() / divisor);
     }
 
     /**
@@ -18,6 +37,6 @@ public class Divide implements Instruction {
      */
     @Override
     public String toString() {
-        return "DIVIDE";
+        return "DIV";
     }
 }

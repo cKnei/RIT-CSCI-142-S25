@@ -1,13 +1,22 @@
 package machine.instructions;
 
+import machine.Alaton;
+import machine.InstructionStack;
+
 public class Multiply implements Instruction {
+    private final InstructionStack stack;
+
+    public Multiply(Alaton machine) {
+        this.stack = machine.getInstructionStack();
+    }
+
     /**
      * Run this instruction on the machine, using the machine's
      * value stack and symbol table.
      */
     @Override
     public void execute() {
-
+        this.stack.push(this.stack.pop() * this.stack.pop());
     }
 
     /**
@@ -18,6 +27,6 @@ public class Multiply implements Instruction {
      */
     @Override
     public String toString() {
-        return "MULTIPLY";
+        return "MUL";
     }
 }
