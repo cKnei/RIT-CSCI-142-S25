@@ -112,20 +112,20 @@ public class Alaton {
         w: while (altIn.hasNextLine()) {
             String[] tokens = altIn.nextLine().strip().split("\\s+");
             switch ( tokens[0] ) {
-                case "ADD"      -> this.operations.add(new Add        (this));
-                case "DIV"      -> this.operations.add(new Divide     (this));
-                case "LOAD"     -> this.operations.add(new Load       (this, tokens[1]));
-                case "MOD"      -> this.operations.add(new Modulus    (this));
-                case "MUL"      -> this.operations.add(new Multiply   (this));
-                case "NEG"      -> this.operations.add(new Negate     (this));
-                case "POW"      -> this.operations.add(new Power      (this));
-                case "PRINT"    -> this.operations.add(new Print      (this));
-                case "PUSH"     -> this.operations.add(new Push       (this, Integer.parseInt(tokens[1])));
-                case "SQRT"     -> this.operations.add(new SquareRoot (this));
-                case "STORE"    -> this.operations.add(new Store      (this, tokens[1]));
-                case "SUB"      -> this.operations.add(new Subtract   (this));
-                case Alaton.EOF -> {break w;}
-                default         -> Errors.report(Errors.Type.ILLEGAL_INSTRUCTION, tokens[0]);
+                case Alaton.ADD          -> this.operations.add(new Add        (this));
+                case Alaton.DIVIDE       -> this.operations.add(new Divide     (this));
+                case Alaton.LOAD         -> this.operations.add(new Load       (this, tokens[1]));
+                case Alaton.MODULUS      -> this.operations.add(new Modulus    (this));
+                case Alaton.MULTIPLY     -> this.operations.add(new Multiply   (this));
+                case Alaton.NEGATE       -> this.operations.add(new Negate     (this));
+                case Alaton.POWER        -> this.operations.add(new Power      (this));
+                case Alaton.PRINT        -> this.operations.add(new Print      (this));
+                case Alaton.PUSH         -> this.operations.add(new Push       (this, Integer.parseInt(tokens[1])));
+                case Alaton.SQUARE_ROOT  -> this.operations.add(new SquareRoot (this));
+                case Alaton.STORE        -> this.operations.add(new Store      (this, tokens[1]));
+                case Alaton.SUBTRACT     -> this.operations.add(new Subtract   (this));
+                case Alaton.EOF          -> {break w;}
+                default                  -> Errors.report(Errors.Type.ILLEGAL_INSTRUCTION, tokens[0]);
             }
         }
 
