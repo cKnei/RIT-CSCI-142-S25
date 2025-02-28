@@ -1,5 +1,6 @@
 package machine.instructions;
 
+import common.Errors;
 import machine.Alaton;
 import machine.InstructionStack;
 
@@ -16,7 +17,11 @@ public class SquareRoot implements Instruction {
      */
     @Override
     public void execute() {
-        this.stack.push((int) Math.pow(this.stack.pop(), 0.5d));
+        int i = this.stack.pop();
+        if (i < 0)
+            Errors.report(Errors.Type.NEGATIVE_SQUARE_ROOT);
+        else
+            this.stack.push((int) Math.pow(i, 0.5d));
     }
 
     /**
