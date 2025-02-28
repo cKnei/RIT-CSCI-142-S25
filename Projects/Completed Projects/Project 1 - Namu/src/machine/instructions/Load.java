@@ -15,6 +15,10 @@ public class Load implements Instruction {
     private final SymbolTable table;
     private final InstructionStack stack;
 
+    public Load(Alaton machine, String name) {
+        this(name, machine);
+    }
+
     public Load(String name, Alaton machine) {
         this.name = name;
         this.table = machine.getSymbolTable();

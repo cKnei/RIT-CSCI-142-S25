@@ -23,6 +23,10 @@ public class Store implements Instruction {
      */
     private final InstructionStack stack;
 
+    public Store(Alaton machine, String name) {
+        this(name, machine);
+    }
+
     public Store(String name, Alaton machine) {
         this.name = name;
         this.table = machine.getSymbolTable();

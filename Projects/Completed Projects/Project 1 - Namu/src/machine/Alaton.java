@@ -62,6 +62,7 @@ public class Alaton {
 
     public final InstructionStack instructions;
     public final SymbolTable symbols;
+    public final ArrayList<Instruction> operations;
 
     /** the terminating character when reading machine instructions from user (not file) */
     private final static String EOF = ".";
@@ -75,6 +76,7 @@ public class Alaton {
     public Alaton() {
         this.symbols = new SymbolTable();
         this.instructions = new InstructionStack();
+        this.operations = new ArrayList<>(0);
     }
 
     /**
@@ -107,11 +109,31 @@ public class Alaton {
             System.out.print("🤖 ");
         }
 
-        // TODO
+        w: while (altIn.hasNextLine()) {
+            String[] tokens = altIn.nextLine().strip().split("\\s+");
+            switch ( tokens[0] ) {
+                case "ADD"      -> this.operations.add(new Add        (this));
+                case "DIV"      -> this.operations.add(new Divide     (this));
+                case "LOAD"     -> this.operations.add(new Load       (this, tokens[1]));
+                case "MOD"      -> this.operations.add(new Modulus    (this));
+                case "MUL"      -> this.operations.add(new Multiply   (this));
+                case "NEG"      -> this.operations.add(new Negate     (this));
+                case "POW"      -> this.operations.add(new Power      (this));
+                case "PRINT"    -> this.operations.add(new Print      (this));
+                case "PUSH"     -> this.operations.add(new Push       (this, Integer.parseInt(tokens[1])));
+                case "SQRT"     -> this.operations.add(new SquareRoot (this));
+                case "STORE"    -> this.operations.add(new Store      (this, tokens[1]));
+                case "SUB"      -> this.operations.add(new Subtract   (this));
+                case Alaton.EOF -> {break w;}
+                default         -> Errors.report(Errors.Type.ILLEGAL_INSTRUCTION, tokens[0]);
+            }
+        }
 
         System.out.println("(ALT) Machine instructions:");
 
-        // TODO
+        for (Instruction i : this.operations) {
+            System.out.println(i);
+        }
     }
 
     /**
@@ -121,12 +143,14 @@ public class Alaton {
     public void execute() {
         System.out.println("(ALT) Executing...");
 
-        // TODO
+        while (!this.operations.isEmpty()) {
+            this.operations.removeFirst().execute();
+        }
 
         System.out.println("(ALT) Completed execution!");
         System.out.println("(ALT) Symbol table:");
 
-        // TODO
+        System.out.println(this.symbols);
     }
 
     /**

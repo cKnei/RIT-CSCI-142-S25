@@ -14,6 +14,10 @@ public class Push implements Instruction {
     /** the instruction stack */
     private final InstructionStack stack;
 
+    public Push(Alaton machine, int value) {
+        this(value, machine);
+    }
+
     /**
      * Create a new Push instruction.
      * @param value value to push
