@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Objects;
 
 /**
  * Class representing a node in a graph - to be written.
@@ -7,14 +7,51 @@ import java.util.*;
  * Initially left empty to be implemented by students.
  *
  * @author RIT CS
- * @author <<YOUR NAME HERE>>
+ * @author Knei
  */
-public class Node<D> {
+public class Node<T> {
     // TODO instance variables
-    
+    @SuppressWarnings("rawtypes")
+    private final Node[] neighbours;
+    private final T data;
+
     // TODO constructor
+    public Node(T data) {
+        this.neighbours = new Node[Directions.values().length];
+
+        this.data = data;
+    }
 
     // TODO accessors
+    public T getData() {
+        return this.data;
+    }
+
+    @SuppressWarnings("rawtypes")
+    public Node getNodeAtDirection(Directions dir) {
+        Objects.requireNonNull(dir, "Direction cannot be null");
+
+        return switch ( dir ) {
+            case NORTH -> this.neighbours[0];
+            case EAST  -> this.neighbours[1];
+            case SOUTH -> this.neighbours[2];
+            case WEST  -> this.neighbours[3];
+        };
+    }
 
     // TODO function to add a neighbor
+    public void setNodeAtDirection(Directions dir, Node<T> newNeighbourNode) {
+        Objects.requireNonNull(dir, "Direction cannot be null");
+
+        switch ( dir ) {
+            case NORTH -> this.neighbours[0] = newNeighbourNode;
+            case EAST  -> this.neighbours[1] = newNeighbourNode;
+            case SOUTH -> this.neighbours[2] = newNeighbourNode;
+            case WEST  -> this.neighbours[3] = newNeighbourNode;
+        }
+    }
+
+    public enum Directions {
+        NORTH, EAST, SOUTH, WEST
+    }
 }
