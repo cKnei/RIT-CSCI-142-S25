@@ -11,13 +11,13 @@ import java.util.Objects;
  */
 public class Node<T> {
     // TODO instance variables
-    @SuppressWarnings("rawtypes")
-    private final Node[] neighbours;
+    private final Node<T>[] neighbours;
     private final T data;
 
     // TODO constructor
+    @SuppressWarnings("unchecked")
     public Node(T data) {
-        this.neighbours = new Node[Directions.values().length];
+        this.neighbours = (Node<T>[]) new Node[Directions.values().length];
 
         this.data = data;
     }
@@ -27,8 +27,7 @@ public class Node<T> {
         return this.data;
     }
 
-    @SuppressWarnings("rawtypes")
-    public Node getNodeAtDirection(Directions dir) {
+    public Node<T> getNodeAtDirection(Directions dir) {
         Objects.requireNonNull(dir, "Direction cannot be null");
 
         return switch ( dir ) {

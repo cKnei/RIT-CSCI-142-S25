@@ -25,9 +25,8 @@ public class Graph<T> implements IGraph<T> {
      * @return true iff the graph contains a node with that data
      */
     @Override
-    @SuppressWarnings("rawtypes")
     public boolean hasNode(T nodeData) {
-        for (Node node : this.nodes)
+        for (Node<T> node : this.nodes)
             if (node.getData().equals(nodeData)) return true;
 
         return false;
@@ -40,10 +39,9 @@ public class Graph<T> implements IGraph<T> {
      * @return the Node object with the given value or null if doesn't exist
      */
     @Override
-    @SuppressWarnings( {"unchecked", "rawtypes"} )
     public Node<T> getNode(T nodeData) {
-        for (Node node : this.nodes)
-            if (node.getData().equals(nodeData)) return (Node<T>) node;
+        for (Node<T> node : this.nodes)
+            if (node.getData().equals(nodeData)) return node;
 
         return null;
     }
