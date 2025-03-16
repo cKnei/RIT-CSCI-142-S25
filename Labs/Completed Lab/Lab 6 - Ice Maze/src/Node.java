@@ -1,4 +1,4 @@
-import java.util.Objects;
+import java.util.ArrayList;
 
 /**
  * Class representing a node in a graph - to be written.
@@ -11,14 +11,12 @@ import java.util.Objects;
  */
 public class Node<T> {
     // TODO instance variables
-    private final Node<T>[] neighbours;
+    private final ArrayList<T> edgeData;
     private final T data;
 
     // TODO constructor
-    @SuppressWarnings("unchecked")
     public Node(T data) {
-        this.neighbours = (Node<T>[]) new Node[Directions.values().length];
-
+        this.edgeData = new ArrayList<>(4);
         this.data = data;
     }
 
@@ -27,30 +25,18 @@ public class Node<T> {
         return this.data;
     }
 
-    public Node<T> getNodeAtDirection(Directions dir) {
-        Objects.requireNonNull(dir, "Direction cannot be null");
-
-        return switch ( dir ) {
-            case NORTH -> this.neighbours[0];
-            case EAST  -> this.neighbours[1];
-            case SOUTH -> this.neighbours[2];
-            case WEST  -> this.neighbours[3];
-        };
+    public ArrayList<T> getEdgeData() {
+        return this.edgeData;
     }
 
-    // TODO function to add a neighbor
-    public void setNodeAtDirection(Directions dir, Node<T> newNeighbourNode) {
-        Objects.requireNonNull(dir, "Direction cannot be null");
+    public void addEdge(T newEdgeNode) {
+        this.edgeData.add(newEdgeNode);
+    }
 
-        switch ( dir ) {
-            case NORTH -> this.neighbours[0] = newNeighbourNode;
-            case EAST  -> this.neighbours[1] = newNeighbourNode;
-            case SOUTH -> this.neighbours[2] = newNeighbourNode;
-            case WEST  -> this.neighbours[3] = newNeighbourNode;
+    public void replaceEdge(T edge, T with) {
+        for ( int i = 0; i < this.edgeData.size(); i++ ) {
+            if ( this.edgeData.get(i).equals(edge) )
+                this.edgeData.set(i, with);
         }
-    }
-
-    public enum Directions {
-        NORTH, EAST, SOUTH, WEST
     }
 }

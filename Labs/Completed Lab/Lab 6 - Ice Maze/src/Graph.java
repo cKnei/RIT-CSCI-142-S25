@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 
+
+/**
+ *
+ * @author Knei
+ */
 public class Graph<T> implements IGraph<T> {
     private final Collection<Node<T>> nodes;
 
@@ -41,8 +47,7 @@ public class Graph<T> implements IGraph<T> {
     @Override
     public Node<T> getNode(T nodeData) {
         for (Node<T> node : this.nodes)
-            if (node.getData().equals(nodeData)) return node;
-
+            if ( Objects.equals(node.getData(), nodeData) ) return node;
         return null;
     }
 
@@ -57,8 +62,12 @@ public class Graph<T> implements IGraph<T> {
      */
     @Override
     public void addEdge(T from, T to) {
-        // TODO
-    }
+        Node<T> f = this.getNode(from);
+        Node<T> t = this.getNode(to);
+
+        if ( f == null || t == null || f == t ) return;
+        f.addEdge(t.getData());
+     }
 
     /**
      * Create a new node for this graph.

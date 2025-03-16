@@ -14,7 +14,7 @@ public interface IGraph< DataType > {
      * Get all the nodes currently in this graph.
      * @return a {@link Collection} of the graph's nodes.
      */
-    Collection<Node<DataType>> getNodes();
+    public Collection<Node<DataType>> getNodes();
 
     /**
      * Check if a node with given data is in the graph.

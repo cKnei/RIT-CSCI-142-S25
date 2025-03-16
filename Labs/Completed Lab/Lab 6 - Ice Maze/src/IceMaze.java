@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The main IceMaze class. Used to represent the overall maze.
@@ -15,16 +17,21 @@ public class IceMaze {
     public static final char BLOCK = '*';
     public static final char ICE = '.';
 
-    private final int exitRow;
+    private final Coord exit;
     private final Graph<Coord> graph;
     private final char[][] maze;
 
-    public IceMaze(BufferedReader bufferedReader) throws IOException {
+    public IceMaze(BufferedReader bufferedReader) throws IOException, InvalidMazeException {
         this.graph = new Graph<>();
 
         String[] info = bufferedReader.readLine().split("\\s+");
         this.maze = new char[Integer.parseInt(info[0])][Integer.parseInt(info[1])];
-        this.exitRow = Integer.parseInt(info[2]);
+
+        int exitRow = Integer.parseInt(info[2]);
+        if ( exitRow < 0 || this.maze.length <= exitRow )
+            throw new InvalidMazeException("Invalid exit row: " + exitRow);
+
+        this.exit = new Coord(exitRow, Integer.parseInt(info[1]));
 
 
         String line;
@@ -37,20 +44,19 @@ public class IceMaze {
      * A function to build the graph based on the loaded grid.
      */
     public void buildGraph() throws InvalidMazeException {
-        int col = this.maze[0].length;
+        int maxCol = this.maze[0].length;
 
-        for ( int i = 0; i < this.maze.length; i++ ) {
-            for ( int j = 0; j < col; j++ ) {
-                switch ( this.maze[i][j] ) {
-                    case IceMaze.ICE -> this.graph.addNode(new Coord(i, j));
-                    case IceMaze.BLOCK -> { }
+        for ( int row = 0; row < this.maze.length; row++ )
+            for ( int col = 0; col < maxCol; col++ )
+                switch ( this.maze[row][col] ) {
+                    case IceMaze.ICE -> this.graph.addNode(new Coord(row, col));
+                    case IceMaze.BLOCK -> {
+                    }
 
-                    default -> throw new InvalidMazeException("Invalid Maze character: `" + this.maze[i][j] + "`");
+                    default -> throw new InvalidMazeException("Invalid Maze character: `" + this.maze[row][col] + "`");
                 }
-            }
-        }
 
-        this.graph.addNode(new Coord(exitRow, col - 1));
+        this.findAndSetEdges();
     }
 
     /**
@@ -58,8 +64,104 @@ public class IceMaze {
      */
     public void printGraph() {
         for ( Node<Coord> node : this.graph.getNodes() ) {
-            System.out.println(node.getData() + ":");
-            // TODO
+            StringBuilder s = new StringBuilder(node.getData() + ":  ");
+
+            for ( Coord edgeNode : node.getEdgeData() )
+                s.append(edgeNode.toString()).append(", ");
+
+            System.out.println(s.delete(s.length() - 2, s.length()));
+        }
+
+        System.out.println(exit);
+        System.out.println();
+    }
+
+    private void faseLoop(int start, int end, int step, int staticIndex, boolean row) {
+        if ( step == 0 ) throw new IllegalArgumentException("Step cannot be 0");
+
+        Coord extreme = null;
+        for ( int i = start; (step > 0 && i < end) || (step < 0 && i > end); i += step ) {
+            Coord coord;
+            if ( row ) coord = new Coord(staticIndex, i);
+            else coord = new Coord(i, staticIndex);
+
+            if ( this.maze[coord.r()][coord.c()] == IceMaze.BLOCK ) {
+                extreme = null;
+            } else if ( extreme == null ) {
+                extreme = coord;
+            } else {
+                this.graph.getNode(coord).addEdge(extreme);
+            }
+        }
+    }
+
+    private void findAndSetEdges() {
+        int maxRow = this.maze.length,
+                maxCol = this.maze[0].length;
+
+        // East West
+        for ( int curRow = 0; curRow < maxRow; curRow++ ) {
+            this.faseLoop(0, maxCol, +1, curRow, true);
+            this.faseLoop(maxCol - 1, -1, -1, curRow, true);
+        }
+        // North South
+        for ( int curCol = 0; curCol < maxCol; curCol++ ) {
+            this.faseLoop(0, maxRow, +1, curCol, false);
+            this.faseLoop(maxRow - 1, -1, -1, curCol, false);
+        }
+
+        Coord e = new Coord(this.exit.r(), this.exit.c() - 1);
+        for ( int col = 0; col < this.maze[0].length; col++ ) {
+            Coord coord = new Coord(this.exit.r(), col);
+            Node<Coord> node = this.graph.getNode(coord);
+
+            if ( node == null ) continue;
+
+            if ( node.getData().equals(e) ) {
+                node.addEdge(this.exit);
+            } else if ( node.getEdgeData().contains(e) ) {
+                node.replaceEdge(e, this.exit);
+            }
+        }
+    }
+
+    public void breadthFirstSearch() {
+        ArrayList<ArrayList<Coord>> solutions = new ArrayList<>();
+
+        ArrayList<Coord> queue = new ArrayList<>(List.of(this.exit));
+        ArrayList<Coord> visited = new ArrayList<>();
+
+        int depth = 0;
+
+        while (!queue.isEmpty()) {
+            ArrayList<Coord> oldQueue = queue;
+            queue = new ArrayList<>();
+
+            solutions.add(new ArrayList<>());
+
+            while (!oldQueue.isEmpty()) {
+                Coord lookFor = oldQueue.removeFirst();
+
+                for ( Node<Coord> node : this.graph.getNodes() ) {
+                    if ( visited.contains(node.getData()) || !node.getEdgeData().contains(lookFor) ) continue;
+
+                    Coord data = node.getData();
+
+                    queue.add(data);
+                    visited.add(data);
+                    solutions.get(depth).add(data);
+                }
+            }
+
+            depth++;
+        }
+
+        for ( int i = 0; i < solutions.size() - 1; i++ ) {
+            StringBuilder s = new StringBuilder((i+1) + ": ");
+            for ( Coord c : solutions.get(i) )
+                s.append(c).append(" ");
+
+            System.out.println(s);
         }
     }
 
@@ -91,7 +193,7 @@ public class IceMaze {
             IceMaze maze = readFile(args[0]);
             maze.buildGraph();
             maze.printGraph();
-            // TODO BFS search algorithm
+            maze.breadthFirstSearch();
         } catch ( InvalidMazeException e ) {
             System.out.println("Invalid maze file!");
             System.out.println(e.getMessage());
