@@ -1,0 +1,205 @@
+Index: ../../../Projects/Completed Projects/Project 1 - Namu/src/machine/Alaton.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package machine;\r\n\r\nimport common.Errors;\r\nimport common.SymbolTable;\r\nimport machine.instructions.*;\r\n\r\nimport java.io.File;\r\nimport java.io.FileNotFoundException;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Scanner;\r\n\r\n\r\n/**\r\n * The machine can process/execute a series of low level ALT instructions using\r\n * an instruction stack and symbol table.\r\n *\r\n * @author RIT CS\r\n */\r\npublic class Alaton {\r\n    /** the push instruction */\r\n    public final static String PUSH = \"PUSH\";\r\n    /** the print instruction */\r\n    public final static String PRINT = \"PRINT\";\r\n    /** the store instruction */\r\n    public final static String STORE = \"STORE\";\r\n    /** the load instruction */\r\n    public final static String LOAD = \"LOAD\";\r\n    /** the negate instruction */\r\n    public final static String NEGATE = \"NEG\";\r\n    /** the square root instruction */\r\n    public final static String SQUARE_ROOT = \"SQRT\";\r\n    /** the add instruction */\r\n    public final static String ADD = \"ADD\";\r\n    /** the subtract instruction */\r\n    public final static String SUBTRACT = \"SUB\";\r\n    /** the multiply instruction */\r\n    public final static String MULTIPLY = \"MUL\";\r\n    /** the divide instruction */\r\n    public final static String DIVIDE = \"DIV\";\r\n    /** the modulus instruction */\r\n    public final static String MODULUS = \"MOD\";\r\n    /** the power instruction */\r\n    public final static String POWER = \"POW\";\r\n\r\n    /** the list of valid machine instructions */\r\n    public static final List< String > OPERATIONS =\r\n            List.of(\r\n                    ADD,\r\n                    DIVIDE,\r\n                    LOAD,\r\n                    MODULUS,\r\n                    MULTIPLY,\r\n                    NEGATE,\r\n                    POWER,\r\n                    PUSH,\r\n                    PRINT,\r\n                    SQUARE_ROOT,\r\n                    STORE,\r\n                    SUBTRACT\r\n            );\r\n\r\n    public final InstructionStack instructions;\r\n    public final SymbolTable symbols;\r\n    public final ArrayList<Instruction> operations;\r\n\r\n    /** the terminating character when reading machine instructions from user (not file) */\r\n    private final static String EOF = \".\";\r\n\r\n    // TODO\r\n\r\n    /**\r\n     * Create a new machine, with an empty symbol table, instruction stack, and\r\n     * list of instructions.\r\n     */\r\n    public Alaton() {\r\n        this.symbols = new SymbolTable();\r\n        this.instructions = new InstructionStack();\r\n        this.operations = new ArrayList<>(0);\r\n    }\r\n\r\n    /**\r\n     * Return the instruction stack.\r\n     *\r\n     * @return the stack\r\n     */\r\n    public InstructionStack getInstructionStack() {\r\n        return this.instructions;\r\n    }\r\n\r\n    /**\r\n     * Return the symbol table.\r\n     *\r\n     * @return the symbol table\r\n     */\r\n    public SymbolTable getSymbolTable() {\r\n        return this.symbols;\r\n    }\r\n\r\n\r\n    /**\r\n     * Assemble the machine instructions.\r\n     *\r\n     * @param altIn the input source\r\n     * @param stdin true if input is coming from standard input (for prompting)\r\n     */\r\n    public void assemble(Scanner altIn, boolean stdin) {\r\n        if (stdin) {\r\n            System.out.print(\"\uD83E\uDD16 \");\r\n        }\r\n\r\n        w: while (altIn.hasNextLine()) {\r\n            String[] tokens = altIn.nextLine().strip().split(\"\\\\s+\");\r\n            switch ( tokens[0] ) {\r\n                case Alaton.ADD          -> this.operations.add(new Add        (this));\r\n                case Alaton.DIVIDE       -> this.operations.add(new Divide     (this));\r\n                case Alaton.LOAD         -> this.operations.add(new Load       (this, tokens[1]));\r\n                case Alaton.MODULUS      -> this.operations.add(new Modulus    (this));\r\n                case Alaton.MULTIPLY     -> this.operations.add(new Multiply   (this));\r\n                case Alaton.NEGATE       -> this.operations.add(new Negate     (this));\r\n                case Alaton.POWER        -> this.operations.add(new Power      (this));\r\n                case Alaton.PRINT        -> this.operations.add(new Print      (this));\r\n                case Alaton.PUSH         -> this.operations.add(new Push       (this, Integer.parseInt(tokens[1])));\r\n                case Alaton.SQUARE_ROOT  -> this.operations.add(new SquareRoot (this));\r\n                case Alaton.STORE        -> this.operations.add(new Store      (this, tokens[1]));\r\n                case Alaton.SUBTRACT     -> this.operations.add(new Subtract   (this));\r\n                case Alaton.EOF          -> {break w;}\r\n                default                  -> Errors.report(Errors.Type.ILLEGAL_INSTRUCTION, tokens[0]);\r\n            }\r\n        }\r\n\r\n        System.out.println(\"(ALT) Machine instructions:\");\r\n\r\n        for (Instruction i : this.operations) {\r\n            System.out.println(i);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Executes each assembled machine instruction in order.  When completed it\r\n     * displays the symbol table and the instruction stack.\r\n     */\r\n    public void execute() {\r\n        System.out.println(\"(ALT) Executing...\");\r\n\r\n        while (!this.operations.isEmpty()) {\r\n            this.operations.removeFirst().execute();\r\n        }\r\n\r\n        System.out.println(\"(ALT) Completed execution!\");\r\n        System.out.println(\"(ALT) Symbol table:\");\r\n\r\n        System.out.println(this.symbols);\r\n    }\r\n\r\n    /**\r\n     * The main method.  Machine instructions can either be specified from standard input\r\n     * (no command line), or from a file (only argument on command line).  From\r\n     * here the machine assembles the instructions and then executes them.\r\n     *\r\n     * @param args command line argument (optional)\r\n     * @throws FileNotFoundException if the machine file is not found\r\n     */\r\n    public static void main(String[] args) throws FileNotFoundException {\r\n        // determine input source\r\n        Scanner altIn = null;\r\n        boolean stdin = false;\r\n        if (args.length == 0) {\r\n            altIn = new Scanner(System.in);\r\n            stdin = true;\r\n        } else if (args.length == 1){\r\n            altIn = new Scanner(new File(args[0]));\r\n        } else {\r\n            System.out.println(\"Usage: java Alaton [filename.alt]\");\r\n            System.exit(1);\r\n        }\r\n\r\n        Alaton machine = new Alaton();\r\n        machine.assemble(altIn, stdin);            // assemble the machine instructions\r\n        machine.execute();                         // execute the program\r\n        altIn.close();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../../Projects/Completed Projects/Project 1 - Namu/src/machine/Alaton.java b/../../../Projects/Completed Projects/Project 1 - Namu/src/machine/Alaton.java
+--- a/../../../Projects/Completed Projects/Project 1 - Namu/src/machine/Alaton.java	(revision 1ab98adff585d5204ddefa354e71e817ba0e898e)
++++ b/../../../Projects/Completed Projects/Project 1 - Namu/src/machine/Alaton.java	(date 1740849460886)
+@@ -67,8 +67,6 @@
+     /** the terminating character when reading machine instructions from user (not file) */
+     private final static String EOF = ".";
+ 
+-    // TODO
+-
+     /**
+      * Create a new machine, with an empty symbol table, instruction stack, and
+      * list of instructions.
+@@ -150,7 +148,8 @@
+         System.out.println("(ALT) Completed execution!");
+         System.out.println("(ALT) Symbol table:");
+ 
+-        System.out.println(this.symbols);
++        System.out.print(this.symbols);
++        System.out.print(this.instructions);
+     }
+ 
+     /**
+Index: ../../../Projects/Completed Projects/Project 1 - Namu/src/interpreter/Namu.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package interpreter;\r\n\r\nimport common.Errors;\r\nimport common.SymbolTable;\r\nimport interpreter.nodes.action.*;\r\nimport interpreter.nodes.expression.*;\r\nimport machine.Alaton;\r\n\r\nimport java.io.File;\r\nimport java.io.FileNotFoundException;\r\nimport java.io.IOException;\r\nimport java.io.PrintWriter;\r\nimport java.util.*;\r\n\r\n/**\r\n * The main program for the high level NMU language.  It takes a program in NMU,\r\n * converts it into a token list, builds the parse trees for each statement,\r\n * displays the program in infix, interprets/evaluates the program, then\r\n * compiles into ALT instructions so that the machine, Alaton, can execute it.\r\n *\r\n * @author RIT CS\r\n */\r\npublic class Namu {\r\n    /** the terminating character when reading machine instructions from user (not file) */\r\n    private final static String EOF = \".\";\r\n\r\n    /** the NMU print token */\r\n    private final static String PRINT = \"@\";\r\n    /** the NMU assignment token */\r\n    private final static String ASSIGN = \"=\";\r\n\r\n    /** the location to generate the compiled NMU program of NMU instructions */\r\n    private final static String TMP_NMU_FILE = \"tmp/TEMP.nmu\";\r\n\r\n    // TODO\r\n\r\n    /**\r\n     * Create a new Namu instance.  The result of this method is the tokenization\r\n     * of the entire NMU input into a list of strings.  Each line that\r\n     * represents a statement in prefix form should be printed to standard output\r\n     * here.\r\n     *\r\n     * @param in where to read the NMU input from\r\n     * @param stdin if true, the user should be prompted to enter NMU statements until\r\n     *              a terminating \".\".\r\n     */\r\n    public Namu(Scanner in, boolean stdin) {\r\n        if (stdin) {\r\n            System.out.print(\"\uD83C\uDF33 \");\r\n        }\r\n        System.out.println(\"(NMU) prefix...\");\r\n\r\n        // TODO\r\n    }\r\n\r\n    /**\r\n     * Build the parse trees into the program which is a list of ActioNode's -\r\n     * one per line of NMU input.\r\n     */\r\n    public void buildProgram() {\r\n        // TODO\r\n    }\r\n\r\n    /**\r\n     * Displays the entire NMU program of ActionNode's to standard\r\n     * output using emit().\r\n     */\r\n    public void displayProgram() {\r\n        System.out.println(\"(NMU) infix...\");\r\n        // TODO\r\n    }\r\n\r\n    /**\r\n     * Execute the NMU program of ActionNode's to standard output using execute().\r\n     * In order to execute the ActioNodes, a local SymbolTable must be created here\r\n     * for use.\r\n     */\r\n    public void interpretProgram() {\r\n        System.out.println(\"(NMU) interpreting program...\");\r\n        // TODO\r\n        System.out.println(\"(NMU) Symbol table:\");\r\n        // TODO\r\n    }\r\n\r\n    /**\r\n     * Compile the NMU program using ActionNode's compile() into the\r\n     * temporary ALT instruction file.\r\n     *\r\n     * @throws IOException if there are issues working with the temp file\r\n     */\r\n    public void compileProgram() throws IOException {\r\n        System.out.println(\"(NMU) compiling program to \" + TMP_NMU_FILE + \"...\");\r\n        PrintWriter out = new PrintWriter(TMP_NMU_FILE);\r\n\r\n        //TODO\r\n\r\n        out.close();\r\n    }\r\n\r\n    /**\r\n     * Takes the generated ALT instruction file and assembles/executes\r\n     * it using the Alaton machine.\r\n     *\r\n     * @throws FileNotFoundException if the ALT file cannot be found.\r\n     */\r\n    public void executeProgram() throws FileNotFoundException {\r\n        // TODO\r\n    }\r\n\r\n    /**\r\n     * The main program runs either with no input (NMU program entered through standard\r\n     * input), or with a file name that represents the NMU program.\r\n     *\r\n     * @param args command line arguments\r\n     * @throws IOException if there are issues working with the NMU/ALT files.\r\n     */\r\n    public static void main(String[] args) throws IOException {\r\n        // determine NMU input source\r\n        Scanner nmuIn = null;\r\n        boolean stdin = false;\r\n        if (args.length == 0) {\r\n            nmuIn = new Scanner(System.in);\r\n            stdin = true;\r\n        } else if (args.length == 1) {\r\n            nmuIn = new Scanner(new File(args[0]));\r\n        } else {\r\n            System.out.println(\"Usage: java Namu filename.nmu\");\r\n            System.exit(1);\r\n        }\r\n\r\n        // step 1: read NMU program into token list\r\n        Namu interpreter = new Namu(nmuIn, stdin);\r\n\r\n        // step 2: parse and build the program from the token list\r\n        interpreter.buildProgram();\r\n\r\n        // step 3: display the program in infix\r\n        interpreter.displayProgram();\r\n\r\n        // step 4: interpret program\r\n        interpreter.interpretProgram();\r\n\r\n        // step 5: compile the program\r\n        interpreter.compileProgram();\r\n\r\n        // step 6: have machine execute compiled program\r\n        interpreter.executeProgram();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../../Projects/Completed Projects/Project 1 - Namu/src/interpreter/Namu.java b/../../../Projects/Completed Projects/Project 1 - Namu/src/interpreter/Namu.java
+--- a/../../../Projects/Completed Projects/Project 1 - Namu/src/interpreter/Namu.java	(revision 1ab98adff585d5204ddefa354e71e817ba0e898e)
++++ b/../../../Projects/Completed Projects/Project 1 - Namu/src/interpreter/Namu.java	(date 1740942074035)
+@@ -1,16 +1,19 @@
+ package interpreter;
+ 
+ import common.Errors;
+-import common.SymbolTable;
+-import interpreter.nodes.action.*;
++import interpreter.nodes.action.ActionNode;
++import interpreter.nodes.action.Assignment;
++import interpreter.nodes.action.Print;
+ import interpreter.nodes.expression.*;
+-import machine.Alaton;
+ 
+ import java.io.File;
+ import java.io.FileNotFoundException;
+ import java.io.IOException;
+ import java.io.PrintWriter;
+-import java.util.*;
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.Scanner;
++
+ 
+ /**
+  * The main program for the high level NMU language.  It takes a program in NMU,
+@@ -21,18 +24,27 @@
+  * @author RIT CS
+  */
+ public class Namu {
+-    /** the terminating character when reading machine instructions from user (not file) */
++    /**
++     * the terminating character when reading machine instructions from user (not file)
++     */
+     private final static String EOF = ".";
+ 
+-    /** the NMU print token */
++    /**
++     * the NMU print token
++     */
+     private final static String PRINT = "@";
+-    /** the NMU assignment token */
++    /**
++     * the NMU assignment token
++     */
+     private final static String ASSIGN = "=";
+ 
+-    /** the location to generate the compiled NMU program of NMU instructions */
+-    private final static String TMP_NMU_FILE = "tmp/TEMP.nmu";
++    /**
++     * the location to generate the compiled NMU program of ALT instructions
++     */
++    private final static String TMP_ALT_FILE = "tmp/TEMP.alt";
+ 
+-    // TODO
++    private final ArrayList<String> tokenList;
++    private ActionNode[] actions;
+ 
+     /**
+      * Create a new Namu instance.  The result of this method is the tokenization
+@@ -40,17 +52,26 @@
+      * represents a statement in prefix form should be printed to standard output
+      * here.
+      *
+-     * @param in where to read the NMU input from
++     * @param in    where to read the NMU input from
+      * @param stdin if true, the user should be prompted to enter NMU statements until
+      *              a terminating ".".
+      */
+     public Namu(Scanner in, boolean stdin) {
+-        if (stdin) {
++        this.tokenList = new ArrayList<>();
++
++        if ( stdin ) {
+             System.out.print("🌳 ");
+         }
++
+         System.out.println("(NMU) prefix...");
+ 
+-        // TODO
++        while ( in.hasNextLine() ) {
++            String[] tokens = in.nextLine().strip().split("\\s+");
++
++            if ( tokens[0].equals(Namu.EOF) ) break;
++
++            this.tokenList.addAll(Arrays.asList(tokens));
++        }
+     }
+ 
+     /**
+@@ -58,7 +79,32 @@
+      * one per line of NMU input.
+      */
+     public void buildProgram() {
+-        // TODO
++        while ( !this.tokenList.isEmpty() ) {
++            String token = this.tokenList.removeFirst();
++
++            switch ( token ) {
++                case Namu.ASSIGN -> new Assignment(Namu.ASSIGN, this.ExpressionNodeParser());
++                case Namu.PRINT -> new Print(this.ExpressionNodeParser());
++                default -> Errors.report(Errors.Type.ILLEGAL_ACTION, token);
++            }
++        }
++    }
++
++    private ExpressionNode ExpressionNodeParser() {
++        String token = this.tokenList.removeFirst();
++        
++        if ( UnaryOperation.OPERATORS.contains(token) )
++            return new UnaryOperation(token, this.ExpressionNodeParser());
++        if ( BinaryOperation.OPERATORS.contains(token) )
++            return new BinaryOperation(token, this.ExpressionNodeParser(), this.ExpressionNodeParser());
++        if (token.matches("^[a-zA-Z].*"))
++            return new Variable(token);
++        if (token.matches("^-?[0-9]*"))
++            return new Constant(Integer.parseInt(token));
++
++        Errors.report(Errors.Type.PREMATURE_END);
++        // This is so the compiler is happy
++        return null;
+     }
+ 
+     /**
+@@ -89,8 +135,8 @@
+      * @throws IOException if there are issues working with the temp file
+      */
+     public void compileProgram() throws IOException {
+-        System.out.println("(NMU) compiling program to " + TMP_NMU_FILE + "...");
+-        PrintWriter out = new PrintWriter(TMP_NMU_FILE);
++        System.out.println("(NMU) compiling program to " + TMP_ALT_FILE + "...");
++        PrintWriter out = new PrintWriter(TMP_ALT_FILE);
+ 
+         //TODO
+ 
+@@ -118,10 +164,10 @@
+         // determine NMU input source
+         Scanner nmuIn = null;
+         boolean stdin = false;
+-        if (args.length == 0) {
++        if ( args.length == 0 ) {
+             nmuIn = new Scanner(System.in);
+             stdin = true;
+-        } else if (args.length == 1) {
++        } else if ( args.length == 1 ) {
+             nmuIn = new Scanner(new File(args[0]));
+         } else {
+             System.out.println("Usage: java Namu filename.nmu");
+Index: ../../../Projects/Completed Projects/Project 1 - Namu/src/machine/instructions/Load.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package machine.instructions;\r\n\r\nimport common.Errors;\r\nimport common.SymbolTable;\r\nimport machine.Alaton;\r\nimport machine.InstructionStack;\r\n\r\n/**\r\n * The LOAD instruction.\r\n *\r\n * @author knei\r\n */\r\npublic class Load implements Instruction {\r\n    private final String name;\r\n    private final SymbolTable table;\r\n    private final InstructionStack stack;\r\n\r\n    public Load(Alaton machine, String name) {\r\n        this(name, machine);\r\n    }\r\n\r\n    public Load(String name, Alaton machine) {\r\n        this.name = name;\r\n        this.table = machine.getSymbolTable();\r\n        this.stack = machine.getInstructionStack();\r\n    }\r\n\r\n    /**\r\n     * Run this instruction on the machine, using the machine's\r\n     * value stack and symbol table.\r\n     */\r\n    @Override\r\n    public void execute() {\r\n        if ( this.table.has(this.name) )\r\n            this.stack.push(this.table.get(this.name));\r\n        else Errors.report(Errors.Type.UNINITIALIZED);\r\n    }\r\n\r\n    /**\r\n     * Show the instruction using text so that it can be understood\r\n     * by a person.\r\n     *\r\n     * @return a short string describing what this instruction will do\r\n     */\r\n    @Override\r\n    public String toString() {\r\n        return \"LOAD \" + this.name;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../../Projects/Completed Projects/Project 1 - Namu/src/machine/instructions/Load.java b/../../../Projects/Completed Projects/Project 1 - Namu/src/machine/instructions/Load.java
+--- a/../../../Projects/Completed Projects/Project 1 - Namu/src/machine/instructions/Load.java	(revision 1ab98adff585d5204ddefa354e71e817ba0e898e)
++++ b/../../../Projects/Completed Projects/Project 1 - Namu/src/machine/instructions/Load.java	(date 1740849552227)
+@@ -33,7 +33,8 @@
+     public void execute() {
+         if ( this.table.has(this.name) )
+             this.stack.push(this.table.get(this.name));
+-        else Errors.report(Errors.Type.UNINITIALIZED);
++        else
++            Errors.report(Errors.Type.UNINITIALIZED, this.name);
+     }
+ 
+     /**
