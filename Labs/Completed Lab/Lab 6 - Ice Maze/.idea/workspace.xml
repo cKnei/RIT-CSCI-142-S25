@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="31fbd1a4-dbfb-42ee-ab34-567e307ef9c1" name="Changes" comment="Finished Lab, Did... not version enough" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Exception" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../../.." value="Project-1" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;cKnei&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/cKnei/RIT-CSCI-142-S25.git&quot;,
+    &quot;accountId&quot;: &quot;e9465318-8947-4df1-908f-1dc53a1cde8f&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2u5Z9INairXZey4XFbHbUx1Dyj0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Run w/ maze1.in.executor": "Run",
+    "Application.Run w/ maze2.in.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Lab-6",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Documents/RIT CSCI - 142/Labs/Completed Lab/Lab 6 - Ice Maze",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.Run w/ maze1.in">
+    <configuration name="Run w/ maze1.in" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="IceMaze" />
+      <module name="IceMaze" />
+      <option name="PROGRAM_PARAMETERS" value="samples/maze1.in" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Run w/ maze2.in" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="IceMaze" />
+      <module name="IceMaze" />
+      <option name="PROGRAM_PARAMETERS" value="samples/maze2.in" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Run w/ maze1.in" />
+      <item itemvalue="Application.Run w/ maze2.in" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="31fbd1a4-dbfb-42ee-ab34-567e307ef9c1" name="Changes" comment="" />
+      <created>1741540242956</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1741540242956</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial Lab 6">
+      <option name="closed" value="true" />
+      <created>1741541874638</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741541874638</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Finished InvalidMazeException.java">
+      <option name="closed" value="true" />
+      <created>1741542076275</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741542076275</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Base Node.java, might come back to add stuff as project goes on">
+      <option name="closed" value="true" />
+      <created>1741544299934</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741544299934</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Base Node.java, might come back to add stuff as project goes on">
+      <option name="closed" value="true" />
+      <created>1741544449711</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741544449711</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Base Node.java, might come back to add stuff as project goes on">
+      <option name="closed" value="true" />
+      <created>1741544493623</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1741544493623</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Base Graph.java, will most likely be changed as the assignment goes on">
+      <option name="closed" value="true" />
+      <created>1741545772148</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1741545772148</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Implemented Reading and Processing of files.">
+      <option name="closed" value="true" />
+      <created>1741555668855</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1741555668855</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Finished Lab, Did... not version enough">
+      <option name="closed" value="true" />
+      <created>1742088773438</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742088773438</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="Initial Lab 6" />
+    <MESSAGE value="Finished InvalidMazeException.java" />
+    <MESSAGE value="Base Node.java, might come back to add stuff as project goes on" />
+    <MESSAGE value="Base Graph.java, will most likely be changed as the assignment goes on" />
+    <MESSAGE value="Implemented Reading and Processing of files." />
+    <MESSAGE value="Finished Lab, Did... not version enough" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished Lab, Did... not version enough" />
+  </component>
+</project>
