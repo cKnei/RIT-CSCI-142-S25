@@ -6,14 +6,13 @@ import test.IMagnetTest;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * The representation of a magnet configuration, including the ability
  * to backtrack and also give information to the JUnit tester.
- *
+ * <p>
  * This implements a more optimal pruning strategy in isValid():
  * - Pair checked each time a new cell is populated
  * - Polarity checked each time a new cell is populated
@@ -22,27 +21,56 @@ import java.util.List;
  * @author RIT CS
  */
 public class MagnetsConfig implements Configuration, IMagnetTest {
-    /** a cell that has not been assigned a value yet */
+    /**
+     * a cell that has not been assigned a value yet
+     */
     private final static char EMPTY = '.';
-    /** a blank cell */
+    /**
+     * a blank cell
+     */
     private final static char BLANK = 'X';
-    /** a positive cell */
+    /**
+     * a positive cell
+     */
     private final static char POS = '+';
-    /** a negative cell */
+    /**
+     * a negative cell
+     */
     private final static char NEG = '-';
-    /** left pair value */
+    /**
+     * left pair value
+     */
     private final static char LEFT = 'L';
-    /** right pair value */
+    /**
+     * right pair value
+     */
     private final static char RIGHT = 'R';
-    /** top pair value */
+    /**
+     * top pair value
+     */
     private final static char TOP = 'T';
-    /** bottom pair value */
+    /**
+     * bottom pair value
+     */
     private final static char BOTTOM = 'B';
-    /** and ignored count for pos/neg row/col */
+    /**
+     * and ignored count for pos/neg row/col
+     */
     private final static int IGNORED = -1;
 
     // TODO
     // add private state here
+    private char[][] board;
+    private char[][] pairing;
+
+    private int[] posRow;
+    private int[] posCol;
+
+    private int[] negRow;
+    private int[] negCol;
+
+    private int cursorRow = 0;
+    private int cursorCol = -1;
 
     /**
      * Read in the magnet puzzle from the filename.  After reading in, it should display:
@@ -52,14 +80,32 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
      * - the initial config with all empty cells
      *
      * @param filename the name of the file
-     * @throws IOException thrown if there is a problem opening or reading the file
+     * @throws java.io.IOException thrown if there is a problem opening or reading the file
      */
     public MagnetsConfig(String filename) throws IOException {
-        try (BufferedReader in = new BufferedReader(new FileReader(filename))) {
+        try ( BufferedReader in = new BufferedReader(new FileReader(filename)) ) {
             // read first line: rows cols
             String[] fields = in.readLine().split("\\s+");
 
             // TODO: Finish implementing the constructor
+            int rowLen = Integer.parseInt(fields[0]);
+            int colLen = Integer.parseInt(fields[1]);
+
+            this.board = new char[rowLen][colLen];
+            this.pairing = new char[rowLen][colLen];
+
+            this.posRow = MagnetsConfig.parseCounts(in.readLine().split("\\s+"));
+            this.posCol = MagnetsConfig.parseCounts(in.readLine().split("\\s+"));
+            this.negRow = MagnetsConfig.parseCounts(in.readLine().split("\\s+"));
+            this.negCol = MagnetsConfig.parseCounts(in.readLine().split("\\s+"));
+
+            for ( int i = 0; i < rowLen; i++ )
+                for ( int j = 0; j < colLen; j++ )
+                    this.board[i][j] = MagnetsConfig.EMPTY;
+
+            String line;
+            for ( int i = 0; (line = in.readLine()) != null; i++ )
+                this.pairing[i] = String.join("", line.split("\\s+")).toCharArray(); // Copied from Lab 6
 
         } // <3 Jim
     }
@@ -67,13 +113,30 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
     /**
      * The copy constructor which advances the cursor, creates a new grid,
      * and populates the grid at the cursor location with val
+     *
      * @param other the board to copy
-     * @param val the value to store at new cursor location
+     * @param val   the value to store at new cursor location
      */
     private MagnetsConfig(MagnetsConfig other, char val) {
-        // TODO
-    }
+        // SO MANY GETTERS, GETTERS FOR EVERYONE!!!!
+        this.board = other.getBoard();
+        this.pairing = other.getPairing();
 
+        this.posRow = other.getPosRow();
+        this.posCol = other.getPosCol();
+        this.negRow = other.getNegRow();
+        this.negCol = other.getNegCol();
+
+        this.cursorCol = other.getCursorCol() + 1;
+        this.cursorRow = other.getCursorRow();
+
+        if ( this.cursorCol >= this.getCols() ) {
+            this.cursorCol = 0;
+            this.cursorRow += 1;
+        }
+
+        this.board[this.cursorRow][this.cursorCol] = val;
+    }
 
     /**
      * Generate the successor configs.  For minimal pruning, this should be
@@ -85,11 +148,12 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
     public List<Configuration> getSuccessors() {
         List<Configuration> successors = new ArrayList<>();
 
-        // TODO
+        successors.add(new MagnetsConfig(this, MagnetsConfig.POS));
+        successors.add(new MagnetsConfig(this, MagnetsConfig.NEG));
+        successors.add(new MagnetsConfig(this, MagnetsConfig.BLANK));
 
         return successors;
     }
-
 
     /**
      * Checks to make sure a successor is valid or not.  For minimal pruning,
@@ -102,6 +166,9 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
     @Override
     public boolean isValid() {
         // TODO
+
+        // Check adjacent for matching val
+
         return false;
     }
 
@@ -121,16 +188,16 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
         StringBuilder result = new StringBuilder();
         // top row
         result.append("+ ");
-        for (int col = 0; col < getCols(); ++col) {
+        for ( int col = 0; col < getCols(); ++col ) {
             result.append(getPosColCount(col) != IGNORED ? getPosColCount(col) : " ");
-            if (col < getCols() - 1) {
+            if ( col < getCols() - 1 ) {
                 result.append(" ");
             }
         }
         result.append(System.lineSeparator());
         result.append("  ");
-        for (int col = 0; col < getCols(); ++col) {
-            if (col != getCols() - 1) {
+        for ( int col = 0; col < getCols(); ++col ) {
+            if ( col != getCols() - 1 ) {
                 result.append("--");
             } else {
                 result.append("-");
@@ -139,11 +206,11 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
         result.append(System.lineSeparator());
 
         // middle rows
-        for (int row = 0; row < getRows(); ++row) {
+        for ( int row = 0; row < getRows(); ++row ) {
             result.append(getPosRowCount(row) != IGNORED ? getPosRowCount(row) : " ").append("|");
-            for (int col = 0; col < getCols(); ++col) {
+            for ( int col = 0; col < getCols(); ++col ) {
                 result.append(getVal(row, col));
-                if (col < getCols() - 1) {
+                if ( col < getCols() - 1 ) {
                     result.append(" ");
                 }
             }
@@ -153,8 +220,8 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
 
         // bottom row
         result.append("  ");
-        for (int col = 0; col < getCols(); ++col) {
-            if (col != getCols() - 1) {
+        for ( int col = 0; col < getCols(); ++col ) {
+            if ( col != getCols() - 1 ) {
                 result.append("--");
             } else {
                 result.append("-");
@@ -163,7 +230,7 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
         result.append(System.lineSeparator());
 
         result.append("  ");
-        for (int col = 0; col < getCols(); ++col) {
+        for ( int col = 0; col < getCols(); ++col ) {
             result.append(getNegColCount(col) != IGNORED ? getNegColCount(col) : " ").append(" ");
         }
         result.append(" -").append(System.lineSeparator());
@@ -172,62 +239,88 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
 
     // IMagnetTest
 
+    // NOTE #getRows and #getCols use any row or col array length will suffice as their sizes are dependent of each other
+
     @Override
     public int getRows() {
-        // TODO
-        return 0;
+        return this.posRow.length;
     }
 
     @Override
     public int getCols() {
-        // TODO
-        return 0;
+        return this.posCol.length;
     }
 
     @Override
     public int getPosRowCount(int row) {
-        // TODO
-        return 0;
+        return this.posRow[row];
     }
 
     @Override
     public int getPosColCount(int col) {
-        // TODO
-        return 0;
+        return this.posCol[col];
     }
 
     @Override
     public int getNegRowCount(int row) {
-        // TODO
-        return 0;
+        return this.negRow[row];
     }
 
     @Override
     public int getNegColCount(int col) {
-        // TODO
-        return 0;
+        return this.negCol[col];
     }
 
     @Override
     public char getPair(int row, int col) {
-        // TODO
-        return 0;
+        return this.pairing[row][col];
     }
 
     @Override
     public char getVal(int row, int col) {
-        // TODO
-        return 0;    }
+        return this.board[row][col];
+    }
 
     @Override
     public int getCursorRow() {
-        // TODO
-        return 0;
+        return this.cursorRow;
     }
 
     @Override
     public int getCursorCol() {
-        // TODO
-        return 0;
+        return this.cursorCol;
+    }
+
+    public char[][] getBoard() {
+        return this.board;
+    }
+
+    public char[][] getPairing() {
+        return this.pairing;
+    }
+
+    public int[] getPosRow() {
+        return this.posRow;
+    }
+
+    public int[] getPosCol() {
+        return this.posCol;
+    }
+
+    public int[] getNegRow() {
+        return this.negRow;
+    }
+
+    public int[] getNegCol() {
+        return this.negCol;
+    }
+
+    private static int[] parseCounts(String[] stringCounts) {
+        int[] counts = new int[stringCounts.length];
+
+        for ( int i = 0; i < stringCounts.length; i++ )
+            counts[i] = Integer.parseInt(stringCounts[i]);
+
+        return counts;
     }
 }
