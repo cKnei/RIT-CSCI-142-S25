@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0e16f3a-15ec-4373-8c3e-8f24a7e829e9" name="Changes" comment="Completion of test.TestMagnetsInLab#testLoad() and start of Successors">
+    <list default="true" id="a0e16f3a-15ec-4373-8c3e-8f24a7e829e9" name="Changes" comment="Completion of test TestMagnetsInLab#testSuccessors1() and TestMagnetsInLab#testSuccessors2()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/magnets/MagnetsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/magnets/MagnetsConfig.java" afterDir="false" />
     </list>
@@ -45,6 +45,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Magnets magnets-1.txt false.executor": "Run",
+    "Application.Magnets magnets-1.txt true.executor": "Run",
+    "Application.Magnets magnets-10.txt false.executor": "Run",
+    "Application.Magnets magnets-2.txt false.executor": "Run",
+    "Application.Magnets magnets-3.txt false.executor": "Run",
+    "Application.Magnets magnets-3.txt true.executor": "Run",
+    "Application.Magnets magnets-4.txt false.executor": "Run",
+    "Application.Magnets magnets-5.txt false.executor": "Run",
+    "Application.Magnets magnets-6.txt false.executor": "Run",
+    "Application.Magnets magnets-7.txt false.executor": "Run",
+    "Application.Magnets magnets-8.txt false.executor": "Run",
+    "Application.Magnets magnets-9.txt false.executor": "Run",
     "JUnit.TestMagnetsInLab.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -52,10 +63,10 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Documents/RIT-CSCI-142-S25/Labs/Completed Lab/Lab 7 - Magnets",
-    "settings.editor.selected.configurable": "preferences.sourceCode.XML"
+    "settings.editor.selected.configurable": "inlay.hints"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.TestMagnetsInLab" />
+  <component name="RunManager" selected="Application.Magnets magnets-8.txt false" />
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -89,7 +100,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742513355985</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Completion of test TestMagnetsInLab#testSuccessors1() and TestMagnetsInLab#testSuccessors2()">
+      <option name="closed" value="true" />
+      <created>1742516640235</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742516640235</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -99,6 +118,14 @@
     <MESSAGE value="Sync" />
     <MESSAGE value="Completion of test.TestMagnetsInLab#testLoad()" />
     <MESSAGE value="Completion of test.TestMagnetsInLab#testLoad() and start of Successors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completion of test.TestMagnetsInLab#testLoad() and start of Successors" />
+    <MESSAGE value="Completion of test TestMagnetsInLab#testSuccessors1() and TestMagnetsInLab#testSuccessors2()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completion of test TestMagnetsInLab#testSuccessors1() and TestMagnetsInLab#testSuccessors2()" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="sol" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

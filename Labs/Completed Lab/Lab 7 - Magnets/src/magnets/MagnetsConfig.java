@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -61,17 +60,19 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
 
     // TODO
     // add private state here
-    private char[][] board;
-    private char[][] pairing;
+    private final char[][] board;
+    private final char[][] pairing;
 
-    private int[] posRow;
-    private int[] posCol;
+    private final int[] posRow;
+    private final int[] posCol;
 
-    private int[] negRow;
-    private int[] negCol;
+    private final int[] negRow;
+    private final int[] negCol;
 
     private int cursorRow = 0;
     private int cursorCol = -1;
+
+    private static final String[] VALID_PAIRINGS = new String[]{"+-", "-+", "XX"};
 
     /**
      * Read in the magnet puzzle from the filename.  After reading in, it should display:
@@ -168,29 +169,56 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
      */
     @Override
     public boolean isValid() {
-        // TODO
-
-        // Check adjacent for matching val
-
+        // Check top, and left for matching val... That is basically all you need to check
+        char pairType = this.getPair(this.cursorRow, this.cursorCol);
         char self = this.getVal(this.cursorRow, this.cursorCol);
-        if ( self != MagnetsConfig.BLANK && (
-                (self == this.getVal(this.cursorRow - 1, this.cursorCol)) ||
-                (self == this.getVal(this.cursorRow, this.cursorCol - 1)) ||
-                (self == this.getVal(this.cursorRow + 1, this.cursorCol)) ||
-                (self == this.getVal(this.cursorRow, this.cursorCol + 1))
-        )) return false;
 
-        // Check pair to make sure it is either (+ | -/.) or (- | +/.) or (X | X/.)
+        char lVal = this.getVal(this.cursorRow, this.cursorCol - 1);
+        char tVal = this.getVal(this.cursorRow - 1, this.cursorCol);
+
+        boolean valid = true;
+
+        if ( pairType == MagnetsConfig.RIGHT ) {
+            valid = (self != lVal && lVal != MagnetsConfig.EMPTY) || self == MagnetsConfig.BLANK;
+        } else if ( pairType == MagnetsConfig.BOTTOM ) {
+            valid = (self != tVal && tVal != MagnetsConfig.EMPTY) || self == MagnetsConfig.BLANK;
+        } else if ( self == lVal || self == tVal )
+            valid = self == MagnetsConfig.BLANK;
+
+        if ( !this.isGoal() || !valid )
+            return valid;
+
+        int[] posRowc = this.posRow.clone(),
+                posColc = this.posCol.clone(),
+                negRowc = this.negRow.clone(),
+                negColc = this.negCol.clone();
+
+        for ( int i = 0; i < this.getRows(); i++ )
+            for ( int j = 0; j < this.getCols(); j++ )
+                switch ( this.getVal(i, j) ) {
+                    case MagnetsConfig.POS -> {
+                        posRowc[i] -= 1;
+                        posColc[j] -= 1;
+                    }
+                    case MagnetsConfig.NEG -> {
+                        negRowc[i] -= 1;
+                        negColc[j] -= 1;
+                    }
+                }
+
+        for ( int i = 0, j = 0; i < this.getRows(); i++, j++ )
+            if ( (this.posRow[i] != -1 && posRowc[i] != 0) || (this.negRow[i] != -1 && negRowc[i] != 0) ) return false;
 
 
+        for ( int i = 0; i < this.getCols(); i++ )
+            if ( (this.posCol[i] != -1 && posColc[i] != 0) || (this.negCol[i] != -1 && negColc[i] != 0) ) return false;
 
-        return false;
+        return true;
     }
 
     @Override
     public boolean isGoal() {
-        // TODO
-        return false;
+        return this.cursorRow == this.getRows() - 1 && this.cursorCol == this.getCols() - 1;
     }
 
     /**
