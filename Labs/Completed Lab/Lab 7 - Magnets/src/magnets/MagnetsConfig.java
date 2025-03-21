@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -118,17 +119,19 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
      * @param val   the value to store at new cursor location
      */
     private MagnetsConfig(MagnetsConfig other, char val) {
-        // SO MANY GETTERS, GETTERS FOR EVERYONE!!!!
-        this.board = other.getBoard();
-        this.pairing = other.getPairing();
+        this.board = other.board.clone();
+        for ( int i = 0; i < this.board.length; i++ )
+            this.board[i] = this.board[i].clone();
 
-        this.posRow = other.getPosRow();
-        this.posCol = other.getPosCol();
-        this.negRow = other.getNegRow();
-        this.negCol = other.getNegCol();
+        this.pairing = other.pairing;
 
-        this.cursorCol = other.getCursorCol() + 1;
-        this.cursorRow = other.getCursorRow();
+        this.posRow = other.posRow;
+        this.posCol = other.posCol;
+        this.negRow = other.negRow;
+        this.negCol = other.negCol;
+
+        this.cursorCol = other.cursorCol + 1;
+        this.cursorRow = other.cursorRow;
 
         if ( this.cursorCol >= this.getCols() ) {
             this.cursorCol = 0;
@@ -168,6 +171,18 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
         // TODO
 
         // Check adjacent for matching val
+
+        char self = this.getVal(this.cursorRow, this.cursorCol);
+        if ( self != MagnetsConfig.BLANK && (
+                (self == this.getVal(this.cursorRow - 1, this.cursorCol)) ||
+                (self == this.getVal(this.cursorRow, this.cursorCol - 1)) ||
+                (self == this.getVal(this.cursorRow + 1, this.cursorCol)) ||
+                (self == this.getVal(this.cursorRow, this.cursorCol + 1))
+        )) return false;
+
+        // Check pair to make sure it is either (+ | -/.) or (- | +/.) or (X | X/.)
+
+
 
         return false;
     }
@@ -278,6 +293,9 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
 
     @Override
     public char getVal(int row, int col) {
+        if ( row < 0 || col < 0 || this.getRows() <= row || this.getCols() <= col )
+            return MagnetsConfig.EMPTY; // Kind of cheating but whatever, solves a lot of complicated copy & pasting for #isValid()
+
         return this.board[row][col];
     }
 
@@ -289,30 +307,6 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
     @Override
     public int getCursorCol() {
         return this.cursorCol;
-    }
-
-    public char[][] getBoard() {
-        return this.board;
-    }
-
-    public char[][] getPairing() {
-        return this.pairing;
-    }
-
-    public int[] getPosRow() {
-        return this.posRow;
-    }
-
-    public int[] getPosCol() {
-        return this.posCol;
-    }
-
-    public int[] getNegRow() {
-        return this.negRow;
-    }
-
-    public int[] getNegCol() {
-        return this.negCol;
     }
 
     private static int[] parseCounts(String[] stringCounts) {

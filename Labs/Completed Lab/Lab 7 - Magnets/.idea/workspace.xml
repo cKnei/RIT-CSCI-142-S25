@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0e16f3a-15ec-4373-8c3e-8f24a7e829e9" name="Changes" comment="Sync">
+    <list default="true" id="a0e16f3a-15ec-4373-8c3e-8f24a7e829e9" name="Changes" comment="Completion of test.TestMagnetsInLab#testLoad() and start of Successors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/magnets/MagnetsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/magnets/MagnetsConfig.java" afterDir="false" />
     </list>
@@ -73,7 +73,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742506756832</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Completion of test.TestMagnetsInLab#testLoad()">
+      <option name="closed" value="true" />
+      <created>1742513333204</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742513333204</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Completion of test.TestMagnetsInLab#testLoad() and start of Successors">
+      <option name="closed" value="true" />
+      <created>1742513355985</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1742513355985</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -81,6 +97,8 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="Sync" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sync" />
+    <MESSAGE value="Completion of test.TestMagnetsInLab#testLoad()" />
+    <MESSAGE value="Completion of test.TestMagnetsInLab#testLoad() and start of Successors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completion of test.TestMagnetsInLab#testLoad() and start of Successors" />
   </component>
 </project>
