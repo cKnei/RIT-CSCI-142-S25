@@ -58,21 +58,17 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
      */
     private final static int IGNORED = -1;
 
+    private static final List<String> VALID_PAIRINGS = List.of("+-", "-+", "XX");
     // TODO
     // add private state here
     private final char[][] board;
     private final char[][] pairing;
-
     private final int[] posRow;
     private final int[] posCol;
-
     private final int[] negRow;
     private final int[] negCol;
-
     private int cursorRow = 0;
     private int cursorCol = -1;
-
-    private static final String[] VALID_PAIRINGS = new String[]{"+-", "-+", "XX"};
 
     /**
      * Read in the magnet puzzle from the filename.  After reading in, it should display:
@@ -179,9 +175,9 @@ public class MagnetsConfig implements Configuration, IMagnetTest {
         boolean valid = true;
 
         if ( pairType == MagnetsConfig.RIGHT ) {
-            valid = (self != lVal && lVal != MagnetsConfig.EMPTY) || self == MagnetsConfig.BLANK;
+            valid = ((self != lVal && lVal != MagnetsConfig.EMPTY) || self == MagnetsConfig.BLANK) && MagnetsConfig.VALID_PAIRINGS.contains("" + self + lVal);
         } else if ( pairType == MagnetsConfig.BOTTOM ) {
-            valid = (self != tVal && tVal != MagnetsConfig.EMPTY) || self == MagnetsConfig.BLANK;
+            valid = ((self != tVal && tVal != MagnetsConfig.EMPTY) || self == MagnetsConfig.BLANK) && MagnetsConfig.VALID_PAIRINGS.contains("" + self + tVal);
         } else if ( self == lVal || self == tVal )
             valid = self == MagnetsConfig.BLANK;
 
